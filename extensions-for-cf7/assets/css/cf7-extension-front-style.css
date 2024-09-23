@@ -1,0 +1,30 @@
+/* Column Style */
+.extcf7-row {
+    --extcf7-row-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: calc(-.5* var(--extcf7-row-gap));
+    margin-left: calc(-.5* var(--extcf7-row-gap));
+}
+.extcf7-row:not(:last-child) {
+    margin-bottom: var(--extcf7-row-gap);
+}
+.extcf7-col {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    padding-right: calc(0.5* var(--extcf7-row-gap));
+    padding-left: calc(0.5* var(--extcf7-row-gap));
+}
+.extcf7-col-12 {
+    width: 100%;
+}
+.extcf7-col-6 {
+    width: 50%;
+}
+.extcf7-col-4 {
+    width: 33.3333%;
+}
+.extcf7-col-3 {
+    width: 25%;
+}
