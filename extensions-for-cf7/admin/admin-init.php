@@ -37,6 +37,8 @@ class Extensions_Cf7_Admin_Setting
 
         if('toplevel_page_wpcf7' === $hook ){
 
+            wp_enqueue_script( 'ht-cf7-metabox-script', CF7_EXTENTIONS_PL_URL.'admin/assets/js/metabox.js', array('jquery'), CF7_EXTENTIONS_PL_VERSION, true);
+
             if ( 'on' == htcf7ext_get_module_option( 'htcf7ext_conditional_field_module_settings','conditional_field','conditional_field_enable','on' ) ) {
                 wp_enqueue_script( 'ht-cf7-conditional-script', CF7_EXTENTIONS_PL_URL.'admin/assets/js/conditional.js', array('jquery'), CF7_EXTENTIONS_PL_VERSION, true);
 

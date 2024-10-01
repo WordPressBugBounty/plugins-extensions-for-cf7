@@ -4,7 +4,7 @@
  * Description: Valuable Extensions for Contact Form 7.
  * Author: 		HasThemes
  * Author URI: 	https://hasthemes.com/
- * Version: 	3.1.6
+ * Version: 	3.1.7
  * Text Domain: cf7-extensions
  * Domain Path: /languages
 */
@@ -14,7 +14,7 @@ define( 'CF7_EXTENTIONS_PL_ROOT', __FILE__ );
 define( 'CF7_EXTENTIONS_PL_URL', plugins_url( '/', CF7_EXTENTIONS_PL_ROOT ) );
 define( 'CF7_EXTENTIONS_PL_PATH', plugin_dir_path( CF7_EXTENTIONS_PL_ROOT ) );
 define( 'CF7_EXTENTIONS_PL_BASE', plugin_basename( CF7_EXTENTIONS_PL_ROOT ) );
-define( 'CF7_EXTENTIONS_PL_VERSION', '3.1.6' );
+define( 'CF7_EXTENTIONS_PL_VERSION', '3.1.7' );
 
 /**
  * CF7 Form Data list render interface

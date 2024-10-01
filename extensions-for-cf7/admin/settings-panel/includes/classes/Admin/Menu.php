@@ -80,6 +80,7 @@ class Menu {
                 "conditional_field" => htcf7ext_get_module_option( 'htcf7ext_conditional_field_module_settings', 'conditional_field', 'conditional_field_enable', 'on' ),
                 "column_extension" => htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'off'),
                 "mailchimp_extension" => htcf7ext_get_option('htcf7ext_opt_extensions', 'mailchimp_extension', 'on'),
+                "range_extension" => htcf7ext_get_option('htcf7ext_opt_extensions', 'range_extension', 'off'),
                 "popup_extension" => 'off',
                 "repeater_field_extensions" => 'off',
                 "unique_field_extensions" => 'off',

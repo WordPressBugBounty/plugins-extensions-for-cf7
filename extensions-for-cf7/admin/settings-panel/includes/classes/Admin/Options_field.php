@@ -239,12 +239,30 @@ class Options_Field {
                     )
                 ),
                 array(
+                    'id'  => 'range_extension',
+                    'name'  => __( 'Range Slider', 'cf7-extensions-pro' ),
+                    'type'  => 'element',
+                    'default'=>'off',
+                    'label_on' => __( 'On', 'cf7-extensions-pro' ),
+                    'label_off' => __( 'Off', 'cf7-extensions-pro' ),
+                ),
+                array(
                     'id'  => 'column_extension',
                     'name'  => __( 'Column Field', 'cf7-extensions' ),
                     'type'  => 'element',
                     'default'=>'off',
                     'label_on' => __( 'On', 'cf7-extensions' ),
                     'label_off' => __( 'Off', 'cf7-extensions' ),
+                ),
+                array(
+                    'id'  => 'form_styler',
+                    'name'  => __( 'Form Styler', 'cf7-extensions-pro' ),
+                    'type'  => 'module',
+                    'default'=>'off',
+                    'label_on' => __( 'On', 'cf7-extensions-pro' ),
+                    'label_off' => __( 'Off', 'cf7-extensions-pro' ),
+                    'section'  => 'htcf7ext_form_styler_module_settings',
+                    'is_pro' => true,
                 ),
                 array(
                     'id'  => 'ip_geo_extension',

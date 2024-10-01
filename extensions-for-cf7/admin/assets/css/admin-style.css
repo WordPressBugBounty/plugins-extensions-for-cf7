@@ -927,3 +927,316 @@ span.button.extcf7-column-select {
   background-color: #f1f1f1;
   margin: 0;
 }
+
+
+/* Metabox */
+.extcf7-metabox {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  margin-top: 30px;
+  box-sizing: border-box;
+  border-radius: 4px 4px 0 0;
+}
+.extcf7-metabox *, .extcf7-metabox *::before, .extcf7-metabox *::after {
+  box-sizing: border-box;
+}
+/* Metabox Title */
+.extcf7-metabox-header {
+  flex: 1 0 100%;
+  width: 100%;
+  padding: 20px 30px;
+  background: #1D39D7;
+  border-radius: 4px 4px 0 0;
+}
+.extcf7-metabox-title {
+  font-size: 16px;
+  margin: 0;
+  color: #ffffff;
+}
+/* Metabox Sidebar */
+.extcf7-metabox-sidebar {
+  max-width: 250px;
+  width: 100%;
+  flex: 1 0;
+  padding-block: 30px;
+  border-right: 1px solid #ededed;
+}
+.extcf7-metabox-sidebar-tab {
+  display: flex;
+  flex-wrap: wrap;
+}
+.extcf7-metabox-sidebar-tab button {
+  display: flex;
+  flex: 1 0 100%;
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease 0s;
+  background-color: transparent;
+  border-right: 2px solid transparent;
+  margin-right: -1px;
+}
+.extcf7-metabox-sidebar-tab button.active {
+  color: #1D39D7;
+  border-right-color: #1D39D7;
+  background-color: rgba(29, 57, 215, 0.1);
+}
+/* .extcf7-metabox-sidebar {
+  max-width: 250px;
+  width: 100%;
+  flex: 1 0;
+  padding: 30px;
+  background: #e5e5e5;
+}
+.extcf7-metabox-sidebar-tab {
+  display: flex;
+  flex-wrap: wrap;
+}
+.extcf7-metabox-sidebar-tab button {
+  display: flex;
+  flex: 1 0 100%;
+  margin-right: -30px;
+  border: none;
+  padding: 15px;
+  margin-left: -15px;
+  cursor: pointer;
+  border-radius: 4px 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: transparent;
+  transition: all 0.3s ease 0s;
+}
+.extcf7-metabox-sidebar-tab button.active {
+  background-color: #fff;
+} */
+/* Metabox Content */
+.extcf7-metabox-tab-content {
+  flex: 1 0;
+  padding: 30px;
+  padding-left: 40px;
+}
+/* Fields Tab Nav */
+.extcf7-metabox .htcf7ext-tab-nav {
+  display: flex;
+  gap: 10px
+}
+.extcf7-metabox .htcf7ext-tab-nav button {
+  display: flex;
+  padding-inline: 20px;
+  padding-block: 10PX;
+  border: none;
+  background-color: #eeeeee;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.extcf7-metabox .htcf7ext-tab-nav button.active {
+  background-color: #1D39D7;
+  color: #ffffff;
+}
+.extcf7-metabox .htcf7ext-tab-nav button:hover:not(.active) {
+  color: #1D39D7;
+}
+/* Fields Tab Content */
+.extcf7-metabox .htcf7ext-tab-pane {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px 20px;
+}
+
+/* Form Fields */
+.extcf7-metabox .htcf7ext-form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px 20px;
+}
+
+/* Field/Option Width's */
+.extcf7-metabox .htcf7ext-admin-option {
+  flex: 1 0 100%;
+  width: 100%;
+  max-width: 100%;
+}
+.extcf7-metabox .htcf7ext-admin-option.width-50 {
+  flex: 1 0 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+  width: calc(50% - 10px);
+}
+.extcf7-metabox .htcf7ext-admin-option.width-33 {
+  flex: 1 0 calc(33.3333% - 13.3333px);
+  max-width: calc(33.3333% - 13.3333px);
+  width: calc(33.3333% - 13.3333px);
+}
+.extcf7-metabox .htcf7ext-admin-option.width-25 {
+  flex: 1 0 calc(25% - 15px);
+  max-width: calc(25% - 15px);
+  width: calc(25% - 15px);
+}
+
+/* Field/Option */
+.extcf7-metabox .htcf7ext-admin-option {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Label */
+.extcf7-metabox .htcf7ext-admin-option-label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: #202223;
+  margin: 0;
+}
+/* Field */
+.extcf7-metabox .htcf7ext-admin-option-field {
+  position: relative;
+}
+
+/* Heading */
+.extcf7-metabox .htcf7ext-admin-option-heading {
+  margin-bottom: -15px;
+  z-index: 1;
+}
+.extcf7-metabox .htcf7ext-admin-option-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  width: 100%;
+  background: #f1f1f1;
+  z-index: -1;
+  margin-top: 1px;
+}
+.extcf7-metabox .htcf7ext-admin-option-heading .htcf7ext-admin-option-label {
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  display: inline-flex;
+  padding-right: 10px;
+}
+
+/* Input/Select */
+.extcf7-metabox .htcf7ext-admin-field-input[type="text"],
+.extcf7-metabox .htcf7ext-admin-field-input[type="number"],
+.extcf7-metabox select.htcf7ext-admin-field-select {
+  height: 40px;
+  width: 100%;
+  max-width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  padding-block: 6px;
+  padding-inline: 12px;
+  color: #6D7175;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+.extcf7-metabox .htcf7ext-admin-field-input[type="text"]:focus,
+.extcf7-metabox .htcf7ext-admin-field-input[type="number"]:focus,
+.extcf7-metabox select.htcf7ext-admin-field-select:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #1D39D7;
+}
+
+/* Color */
+.extcf7-metabox .htcf7ext-admin-option-field .wp-color-result {
+  margin-bottom: 0 !important;
+}
+.extcf7-metabox .htcf7ext-admin-option-field .wp-color-result:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #1D39D7;
+}
+.extcf7-metabox .htcf7ext-admin-option-field .wp-color-result-text {
+  padding: 3px 8px;
+}
+.extcf7-metabox .htcf7ext-admin-option-field .wp-color-picker,
+.extcf7-metabox .htcf7ext-admin-option-field .wp-picker-clear {
+  height: 36px;
+}
+/* .extcf7-metabox .htcf7ext-admin-option-field .wp-picker-holder {
+  position: absolute;
+  z-index: 9;
+} */
+
+/* Swatch Style */
+.extcf7-metabox .htcf7ext-admin-field-swatch {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch-label {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  width: 54px;
+  height: 28px;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border: 1px solid #333333;
+  border-radius: 50px;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch-label span:not(.indicator) {
+  font-size: 11px;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  display: block;
+  padding-top: 1px;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: translateY(-50%);
+  text-transform: uppercase;
+  color: #333333;
+  opacity: 0;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch-label span.on {
+  left: 8px;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch-label span.off {
+  right: 8px;
+  opacity: 1;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch-label span.indicator {
+  position: absolute;
+  top: 50%;
+  right: auto;
+  left: 6px;
+  width: 16px;
+  height: 16px;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: #333333;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch:checked ~ .htcf7ext-admin-field-swatch-label {
+  border-color: #1D39D7;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch:checked ~ .htcf7ext-admin-field-swatch-label span.on {
+  color: #1D39D7;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch:checked ~ .htcf7ext-admin-field-swatch-label span.on {
+  opacity: 1;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch:checked ~ .htcf7ext-admin-field-swatch-label span.off {
+  opacity: 0;
+}
+.extcf7-metabox .htcf7ext-admin-field-swatch:checked ~ .htcf7ext-admin-field-swatch-label span.indicator {
+  left: 30px;
+  background-color: #1D39D7;
+}

@@ -98,11 +98,15 @@ class Extensions_Cf7 {
     if ( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'mailchimp_extension', 'on') ) {
       require_once ( CF7_EXTENTIONS_PL_PATH . 'includes/class.mailchimp-subscribe.php' );
     }
+    if( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'range_extension', 'off') ) {
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-range-slider.php' );
+    }
     if( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'on') ) {
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-column.php' );
     }
   
     if(is_admin()){
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-metabox.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.download-csv.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-post-list.php' );
       if(isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], 'contat-form-list')) {
@@ -158,6 +162,13 @@ class Extensions_Cf7 {
   public function extcf7_enqueue_script(){
 
     wp_enqueue_style( 'cf7-extension-front-style', CF7_EXTENTIONS_PL_URL.'assets/css/cf7-extension-front-style.css', [], CF7_EXTENTIONS_PL_VERSION);
+
+    if('on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'range_extension', 'off')){
+      wp_enqueue_style('jquery-ui-style', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+      wp_enqueue_script('jquery-ui-slider');
+      wp_enqueue_script('touch-punch', '//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js', ['jquery-ui-slider'], CF7_EXTENTIONS_PL_VERSION, true);
+      wp_enqueue_script( 'extcf7-range-slider', CF7_EXTENTIONS_PL_URL.'assets/js/range-slider.js', array('jquery-ui-slider'), CF7_EXTENTIONS_PL_VERSION, true);
+    }
 
     if( 'on' == htcf7ext_get_module_option( 'htcf7ext_conditional_field_module_settings','conditional_field','conditional_field_enable','on') ) {
       wp_enqueue_script( 'extcf7-conditional-field-script', CF7_EXTENTIONS_PL_URL.'assets/js/conditional-field.js', array('jquery'), CF7_EXTENTIONS_PL_VERSION, true);
