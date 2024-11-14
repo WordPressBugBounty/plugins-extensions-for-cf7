@@ -223,8 +223,8 @@ class Extensions_Cf7_Metabox {
         echo '</select>';
     }
     private function value( $field, $form, $metabox) {
-		if ( metadata_exists( 'post', $form->id, 'extcf7_'.$metabox['id'] ) ) {
-			$meta = get_post_meta( $form->id, 'extcf7_'.$metabox['id'], true );
+		if ( metadata_exists( 'post', $form->id(), 'extcf7_'.$metabox['id'] ) ) {
+			$meta = get_post_meta( $form->id(), 'extcf7_'.$metabox['id'], true );
             if( !empty($meta[$field['id']]) ) {
                 return $meta[$field['id']];
             } else {

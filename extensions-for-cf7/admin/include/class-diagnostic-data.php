@@ -90,13 +90,100 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
             $this->project_pro_installed = $this->is_pro_plugin_installed();
             $this->project_pro_version = $this->get_pro_version();
 
-            add_action( 'admin_notices', function () {
-                $this->show_notices();
-            }, 0 );
+            if( get_option('ht_cf7extensions_diagnostic_data_agreed') === 'yes' || get_option('ht_cf7extensions_diagnostic_data_agreed') === 'no' ){
+                return;
+            }
 
             add_action( 'wp_ajax_ht_cf7extensions_diagnostic_data', function () {
-                $this->process_data();
+                check_ajax_referer( 'ht_cf7extensions_diagnostic_data_nonce', 'nonce' );
+                $agreed = isset( $_POST['agreed'] ) ? sanitize_key( $_POST['agreed'] ) : '' ;
+                if( $agreed === 'yes' ){
+                    $this->process_data( $agreed, true );
+                } elseif( $agreed === 'no' ) {
+                    $this->process_data( $agreed, true );
+                }
             } );
+
+            add_action('plugins_loaded', function(){
+                $agreed  = ( isset( $_GET['ht_cf7extensions-diagnostic-data-agreed'] ) ? sanitize_key( $_GET['ht_cf7extensions-diagnostic-data-agreed'] ) : '' );
+
+                if( $agreed === 'yes' ){
+                    $this->process_data( $agreed );
+                } elseif( $agreed === 'no' ) {
+                    $this->process_data( $agreed );
+                }
+            }, 11);
+
+            add_action('admin_head', [$this, 'notice_css']);
+            add_action('admin_footer', [$this, 'notice_js']);
+        }
+
+        public function notice_css() {
+            echo '<style>.ht_cf7extensions-diagnostic-data-notice,.woocommerce-embed-page .ht_cf7extensions-diagnostic-data-notice{padding-top:.75em;padding-bottom:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-message{padding:.25em 2px;margin:0;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list{display:none;color:#646970;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons{padding-top:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons .button{margin-right:5px;box-shadow:none;}.ht_cf7extensions-diagnostic-data-loading{position:relative;}.ht_cf7extensions-diagnostic-data-loading::before{position:absolute;content:"";width:100%;height:100%;top:0;left:0;background-color:rgba(255,255,255,.5);z-index:999;}.ht_cf7extensions-diagnostic-data-disagree{border-width:0px !important;background-color: transparent!important; padding: 0!important;}h4.ht_cf7extensions-diagnostic-data-title {margin: 0 0 10px 0;font-size: 1.04em;font-weight: 600;}.ht_cf7extensions-diagnostic-data-thanks{width:100%;}</style>';
+        }
+        
+        public function notice_js() {
+            $ajax_nonce = wp_create_nonce( "ht_cf7extensions_diagnostic_data_nonce" );
+            $ajax_url = admin_url( 'admin-ajax.php' );
+            echo '<script type="text/javascript">;(function($) {
+                "use strict";
+                function extcf7DismissThanksNotice(noticeWrap) {
+                    $(".ht_cf7extensions-diagnostic-data-thanks .notice-dismiss").on("click", function(e) {
+                        e.preventDefault();
+                        let thisButton = $(this),
+                            noticeWrap = thisButton.closest(".ht_cf7extensions-diagnostic-data-thanks");
+                        noticeWrap.fadeTo(100, 0, function() {
+                            noticeWrap.slideUp(100, function() {
+                                noticeWrap.remove()
+                            })
+                        })
+                    })
+                };
+                $(".ht_cf7extensions-diagnostic-data-list-toogle").on("click", function(e) {
+                    e.preventDefault();
+                    $(this).parents(".ht_cf7extensions-diagnostic-data-notice").find(".ht_cf7extensions-diagnostic-data-list").slideToggle("fast")
+                });
+                $(".ht_cf7extensions-diagnostic-data-button").on("click", function(e) {
+                    e.preventDefault();
+                    let thisButton = $(this),
+                        noticeWrap = thisButton.closest(".extcf7-admin-notice"),
+                        agreed = thisButton.hasClass("ht_cf7extensions-diagnostic-data-agree") ? "yes" : "no",
+                        styleWrap = $(".ht_cf7extensions-diagnostic-data-style"),
+                        scriptWrap = $(".ht_cf7extensions-diagnostic-data-script");
+                    $.ajax({
+                        type: "POST",
+                        url: "'.esc_url($ajax_url).'",
+                        data: {
+                            action: "ht_cf7extensions_diagnostic_data",
+                            agreed: agreed,
+                            _wpnonce: "'.esc_attr($ajax_nonce).'"
+                        },
+                        beforeSend: function() {
+                            noticeWrap.addClass("ht_cf7extensions-diagnostic-data-loading")
+                        },
+                        success: function(response) {
+                            response = "object" === typeof response ? response : {};
+                            let success = response.hasOwnProperty("success") ? response.success : "no",
+                                notice = response.hasOwnProperty("notice") ? response.notice : "no",
+                                thanks_notice = response.hasOwnProperty("thanks_notice") ? response.thanks_notice : "";
+                            if ("yes" === success) {
+                                noticeWrap.replaceWith(thanks_notice);
+                                styleWrap.remove();
+                                scriptWrap.remove()
+                            } else if ("no" === notice) {
+                                noticeWrap.remove();
+                                styleWrap.remove();
+                                scriptWrap.remove()
+                            };
+                            noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading");
+                            extcf7DismissThanksNotice()
+                        },
+                        error: function() {
+                            noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading")
+                        },
+                    })
+                })
+            })(jQuery);</script>';
         }
 
         /**
@@ -159,21 +246,8 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
         /**
          * Process data.
          */
-        private function process_data() {
-
-            $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
-
-            if ( ! wp_verify_nonce( $nonce, 'ht_cf7extensions_diagnostic_data_nonce' ) ) {
-                $errormessage = array(
-                    'message'  => __('Nonce Varification fail','cf7-extensions')
-                );
-                wp_send_json_error( $errormessage );
-            }
-
-            $agreed = ( isset( $_POST['agreed'] ) ? sanitize_key( $_POST['agreed'] ) : 'no' );
-            $agreed = ( ( 'yes' === $agreed ) ? 'yes' : 'no' );
-
-            $notice = 'no';
+        private function process_data( $agreed, $ajax = false ) {
+            $notice  = 'no';
 
             if ( 'yes' === $agreed ) {
                 $data = $this->get_data();
@@ -190,17 +264,22 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
 
             update_option( 'ht_cf7extensions_diagnostic_data_agreed', $agreed );
             update_option( 'ht_cf7extensions_diagnostic_data_notice', $notice );
+            set_transient( 'extcf7-notice-id-diagnostic-data', true );
 
-            $response = array(
-                'success' => $agreed,
-                'notice' => $notice,
-            );
+            if($ajax) {
+                $response = array(
+                    'success' => $agreed,
+                    'notice' => $notice,
+                );
 
-            if ( 'yes' === $agreed ) {
-                $response['thanks_notice'] = $this->get_thanks_notice();
+                if ( 'yes' === $agreed ) {
+                    $response['thanks_notice'] = $this->get_thanks_notice();
+                }
+
+                wp_send_json( $response );
+            } else {
+                echo wp_kses_post($this->get_thanks_notice());
             }
-
-            wp_send_json( $response );
         }
 
         /**
@@ -469,7 +548,7 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
         /**
          * Show notices.
          */
-        private function show_notices() {
+        public function show_notices() {
             if ( 'no' === $this->is_capable_user() ) {
                 return;
             }
@@ -503,8 +582,7 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
             $button_text_2 = esc_html__( 'No, Thanks', 'cf7-extensions' );
             $button_link_2 = add_query_arg( array( 'ht_cf7extensions-diagnostic-data-agreed' => 0 ) );
             ?>
-            <div class="ht_cf7extensions-diagnostic-data-style"><style>.ht_cf7extensions-diagnostic-data-notice,.woocommerce-embed-page .ht_cf7extensions-diagnostic-data-notice{padding-top:.75em;padding-bottom:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-message{padding:.25em 2px;margin:0;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list{display:none;color:#646970;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons{padding-top:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons .button{margin-right:5px;box-shadow:none;}.ht_cf7extensions-diagnostic-data-loading{position:relative;}.ht_cf7extensions-diagnostic-data-loading::before{position:absolute;content:"";width:100%;height:100%;top:0;left:0;background-color:rgba(255,255,255,.5);z-index:999;}.ht_cf7extensions-diagnostic-data-disagree{border-width:0px !important;background-color: transparent!important; padding: 0!important;}h4.ht_cf7extensions-diagnostic-data-title {margin: 0 0 10px 0;font-size: 1.04em;font-weight: 600;}</style></div>
-            <div class="ht_cf7extensions-diagnostic-data-notice notice notice-success">
+            <div class="ht_cf7extensions-diagnostic-data-notice">
                 <h4 class="ht_cf7extensions-diagnostic-data-title"><?php
                 /* translators: %1$s: project name */
                 echo sprintf( esc_html__('🌟 Enhance Your %1$s Experience as a Valued Contributor!','cf7-extensions'), esc_html( $this->project_name ));
@@ -516,7 +594,6 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
                     <a href="<?php echo esc_url( $button_link_2 ); ?>" class="ht_cf7extensions-diagnostic-data-button ht_cf7extensions-diagnostic-data-disagree button button-secondary"><?php echo esc_html( $button_text_2 ); ?></a>
                 </p>
             </div>
-            <div class="ht_cf7extensions-diagnostic-data-script"><script type="text/javascript">;(function($){"use strict";function ht_cf7extensionsDissmissThanksNotice(noticeWrap){$('.ht_cf7extensions-diagnostic-data-thanks .notice-dismiss').on('click',function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest('.ht_cf7extensions-diagnostic-data-thanks');noticeWrap.fadeTo(100,0,function(){noticeWrap.slideUp(100,function(){noticeWrap.remove()})})})};$(".ht_cf7extensions-diagnostic-data-list-toogle").on("click",function(e){e.preventDefault();$(this).parents(".ht_cf7extensions-diagnostic-data-notice").find(".ht_cf7extensions-diagnostic-data-list").slideToggle("fast")});$(".ht_cf7extensions-diagnostic-data-button").on("click",function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest(".ht_cf7extensions-diagnostic-data-notice"),agreed=thisButton.hasClass("ht_cf7extensions-diagnostic-data-agree")?"yes":"no",styleWrap=$(".ht_cf7extensions-diagnostic-data-style"),scriptWrap=$(".ht_cf7extensions-diagnostic-data-script");$.ajax({type:"POST",url:ajaxurl,data:{action:"ht_cf7extensions_diagnostic_data",agreed:agreed,nonce:'<?php echo esc_attr(wp_create_nonce( 'ht_cf7extensions_diagnostic_data_nonce' ));?>'},beforeSend:function(){noticeWrap.addClass("ht_cf7extensions-diagnostic-data-loading")},success:function(response){response="object"===typeof response?response:{};let success=response.hasOwnProperty("success")?response.success:"no",notice=response.hasOwnProperty("notice")?response.notice:"no",thanks_notice=response.hasOwnProperty("thanks_notice")?response.thanks_notice:"";if("yes"===success){noticeWrap.replaceWith(thanks_notice);styleWrap.remove();scriptWrap.remove()}else if("no"===notice){noticeWrap.remove();styleWrap.remove();scriptWrap.remove()};noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading");ht_cf7extensionsDissmissThanksNotice()},error:function(){noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading")},})})})(jQuery);</script></div>
             <?php
         }
 

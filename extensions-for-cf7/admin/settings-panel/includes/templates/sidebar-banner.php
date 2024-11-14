@@ -2,6 +2,7 @@
 ob_start(); 
 ?>
 <div class="htoptions-sidebar-adds-area">
+    <?php do_action('extcf7_admin_sidebar_notices') ?>
     <div class="htcf7ext-opt-get-pro">
         <h3 class="htcf7ext-opt-get-pro-title">Upgrade to Pro</h3>
         <ul>

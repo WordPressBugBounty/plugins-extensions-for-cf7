@@ -172,9 +172,13 @@ class Menu {
      * @return void
      */
     public function plugin_page() {
+        $allowed_tags = wp_kses_allowed_html('post');
+        $allowed_tags['style'] = [
+            'type' => true,
+        ];
         ob_start();
 		include_once HTCF7EXTOPT_INCLUDES .'/templates/settings-page.php';
-		echo ob_get_clean(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses(ob_get_clean(), $allowed_tags);
     }
 
 }

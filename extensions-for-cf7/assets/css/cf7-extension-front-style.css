@@ -30,6 +30,9 @@
 }
 
 /* Range Slider Default Style */
+.wpcf7-extcf7-range-slider {
+    width: 100%;
+}
 .wpcf7-extcf7-range-slider-amount {
     line-height: 1;
     text-align: right;

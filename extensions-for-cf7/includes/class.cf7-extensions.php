@@ -32,17 +32,35 @@ class Extensions_Cf7 {
     if ( ! function_exists('is_plugin_active') ){ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); }
     add_action( 'init', [ $this, 'i18n'] );
     add_action( 'plugins_loaded', [ $this, 'init' ] );
+    register_activation_hook(CF7_EXTENTIONS_PL_ROOT, [$this, 'activate']);
+    add_action('in_admin_header', [$this, 'remove_admin_notice'], 1000);
     if(function_exists('is_plugin_active') && !is_plugin_active('contact-form-7/wp-contact-form-7.php')) {
       return;
     }
     add_action( 'wp_enqueue_scripts', [ $this, 'extcf7_enqueue_script' ] );
-    register_activation_hook(CF7_EXTENTIONS_PL_ROOT, [$this, 'activate']);
     add_action( 'activated_plugin', [ $this, 'plugin_redirection_page' ] ); 
 
     // Vue Settings panel
     require_once ( CF7_EXTENTIONS_PL_PATH . 'includes/class-ajax-actions.php' );
     require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/settings-panel/settings-panel.php' );
+
+    add_action('admin_init', [$this, 'show_diagnostic_notice']);
+    add_action('admin_init', [$this, 'show_rating_notice']);
+    add_action('admin_init', [$this, 'show_promo_notice']);
 	}
+
+  /**
+   * Remove all Notices on admin pages.
+   * @return void
+   */
+  function remove_admin_notice(){
+      $current_screen = get_current_screen();
+      $hide_screen = ['toplevel_page_contat-form-list', 'cf7-extensions_page_cf7-extensions-recommendations', 'update'];
+      if(  in_array( $current_screen->id, $hide_screen) ){
+          remove_all_actions('admin_notices');
+          remove_all_actions('all_admin_notices');
+      }
+  }
 
   /**
    * [i18n] Load Text Domain
@@ -120,6 +138,8 @@ class Extensions_Cf7 {
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/Recommended_Plugins.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-extensions-recomendation.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-diagnostic-data.php' );
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-notice-manager.php' );
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.notices.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/admin-init.php' );
     }
   }
@@ -282,6 +302,76 @@ class Extensions_Cf7 {
     }
   }
       
+  
+
+  
+  function show_diagnostic_notice() {
+      $notice_instance = \Extensions_Cf7_Diagnostic_Data::get_instance();
+      ob_start();
+      $notice_instance->show_notices();
+      $message = ob_get_clean();
+      if (! empty( $message ) ) {
+          Extensions_Cf7_Notice::set_notice(
+              [
+                  'id'          => 'diagnostic-data',
+                  'type'        => 'success',
+                  'dismissible' => false,
+                  'message_type' => 'html',
+                  'message'     => $message,
+                  'display_after'  => ( 7 * DAY_IN_SECONDS ),
+                  'expire_time' => 0,
+                  'close_by'    => 'transient'
+              ]
+          );
+      }
+  }
+    
+  function show_rating_notice() {
+      $message = '<div class="extcf7-review-notice-wrap">
+          <div class="extcf7-rating-notice-logo">
+              <img src="' . esc_url(CF7_EXTENTIONS_PL_URL . 'assets/images/logo.jpg') . '" alt="Extensions For CF7 (Contact form 7 Database, Conditional Fields and Redirection)" style="max-width:110px"/>
+          </div>
+          <div class="extcf7-review-notice-content">
+              <h3>'.esc_html__('Thank you for choosing Extensions For CF7 to extends Contact Form 7 functionalities.','cf7-extensions').'</h3>
+              <p>'.esc_html__('Would you mind doing us a huge favor by providing your feedback on WordPress? Your support helps us spread the word and greatly boosts our motivation.','cf7-extensions').'</p>
+              <div class="extcf7-review-notice-action">
+                  <a href="https://wordpress.org/support/plugin/extensions-for-cf7/reviews/?filter=5#new-post" class="extcf7-review-notice button-primary" target="_blank">'.esc_html__('Ok, you deserve it!','cf7-extensions').'</a>
+                  <a href="#" class="extcf7-notice-close extcf7-review-notice"><span class="dashicons dashicons-calendar"></span>'.esc_html__('Maybe Later','cf7-extensions').'</a>
+                  <a href="#" data-already-did="yes" class="extcf7-notice-close extcf7-review-notice"><span class="dashicons dashicons-smiley"></span>'.esc_html__('I already did','cf7-extensions').'</a>
+              </div>
+          </div>
+      </div>';
+      if (! empty( $message ) ) {
+          Extensions_Cf7_Notice::set_notice(
+              [
+                  'id'          => 'ratting',
+                  'type'        => 'info',
+                  'dismissible' => true,
+                  'message_type' => 'html',
+                  'message'     => $message,
+                  'display_after'  => ( 14 * DAY_IN_SECONDS ),
+                  'close_by'    => 'transient'
+              ]
+          );
+      }
+  }
+
+  function show_promo_notice() {
+      $noticeManager = Extensions_Cf7_Notice_Manager::instance();
+      $notices = $noticeManager->get_notices_info();
+      if(!empty($notices)) {
+          $notices = array_map(function($notice) {
+              $notice["display_after"] = false;
+              $notice["expire_time"] = WEEK_IN_SECONDS;
+              return $notice;
+          }, $notices);
+          foreach ($notices as $notice) {
+              if(empty($notice['disable'])) {
+                Extensions_Cf7_Notice::set_notice($notice);
+              }
+          }
+      }
+  }
 }
 
 $gpr_installer = new Extensions_Cf7_Installer();
