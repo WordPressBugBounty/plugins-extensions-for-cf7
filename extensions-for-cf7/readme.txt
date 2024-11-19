@@ -3,7 +3,7 @@ Contributors: htplugins, hasthemes, tarekht, zenaulislam, aslamhasib
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Easily save contact form data, apply conditional logic in the fields and redirec
 
 [The Extensions for CF7](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin) is an excellent WordPress plugin that extends the features and functionalities of the Contact Form 7 plugin to make it more convenient and user-friendly. This all-inclusive WordPress plugin offers a couple of remarkable features using which you can organize your contact page efficiently while also making it easier for users to get in touch with you. The key features include saving submissions made through Contact Form 7 in your database, redirecting users to any page you choose once their message has been sent successfully, enabling conditional logic so that you can configure fields on the form as either visible or hidden based on input from visitors, and integrating with Mailchimp easily so you can generate leads every time a user submits a form.
 
-######[Landing Page](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin) | [Admin Demo](https://theplugindemo.com/extensions-for-cf7/wp-admin/) | [Purchase Pro](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin) | [Video Guide](https://www.youtube.com/watch?v=636rAmN-ZHY&list=PLk25BQFrj7wHvrsFDKfVUU4EKfO6z6Hi2)
+######[Landing Page](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin) | [Admin Demo](https://theplugindemo.com/extensions-for-cf7/wp-admin/) | [Purchase Pro](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin) | [Documentation](https://hasthemes.com/docs/cf7-extensions/) | [Video Guide](https://www.youtube.com/watch?v=636rAmN-ZHY&list=PLk25BQFrj7wHvrsFDKfVUU4EKfO6z6Hi2)
 
 ### Free VS Pro CF7 Extension
 1. Contact Form 7 Database, Save contact form submission data and handle it through the dashboard.
@@ -131,7 +131,10 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
 
-= Version: 3.1.8 - Date: 01 Oct 2024 =
+= Version: 3.1.9 - Date: 19 Nov 2024 =
+* Fixed: Input fields width not working properly inside column field issue. 
+
+= Version: 3.1.8 - Date: 14 Nov 2024 =
 * Fixed: Issue $form->id isn't be accessible in class.cf7-metabox.php.
 * Fixed: Range Slider width issue inside column.
 * Fixed: Undefined variable $get_unique_fields in class.cf7-unique-field.php

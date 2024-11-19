@@ -10,9 +10,6 @@
     margin-bottom: var(--extcf7-row-gap);
 }
 .extcf7-col {
-    display: flex;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
     padding-right: calc(0.5* var(--extcf7-row-gap));
     padding-left: calc(0.5* var(--extcf7-row-gap));
 }
