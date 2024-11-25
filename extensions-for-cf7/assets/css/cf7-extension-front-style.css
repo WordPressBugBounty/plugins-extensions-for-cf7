@@ -1,4 +1,7 @@
 /* Column Style */
+.extcf7-row, .extcf7-row *, .extcf7-row *::before, .extcf7-row *::after{
+    box-sizing: border-box;
+}
 .extcf7-row {
     --extcf7-row-gap: 1rem;
     display: flex;

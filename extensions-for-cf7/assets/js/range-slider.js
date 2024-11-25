@@ -10,7 +10,7 @@
         const params = {};
         if (type === "double") {
             params.range = true;
-            params.values = value?.includes(',') ? value?.split(',')?.map(Number) : [+value, max];
+            params.values = value?.includes('-') ? value?.split('-')?.map(Number) : [+value, max];
         } else {
             params.value = +value;
         }

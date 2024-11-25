@@ -412,7 +412,7 @@ class Extensions_Cf7_Range_slider{
                             <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-default-value' ); ?>"><?php echo esc_html__( 'Default Value', 'cf7-extensions-pro' ); ?></label></th>
                             <td>
                                 <input type="text" name="default_value" class="default-value oneline option" placeholder="50" id="<?php echo esc_attr( $args['content'] . '-default-value' ); ?>" />
-                                <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma (","). If you only set one value, the other will default to the maximum value.','cf7-extensions-pro' ) ?></p>
+                                <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma ("-"). If you only set one value, the other will default to the maximum value. Example: 20-70','cf7-extensions-pro' ) ?></p>
                             </td>
                         </tr>
                         <tr>
