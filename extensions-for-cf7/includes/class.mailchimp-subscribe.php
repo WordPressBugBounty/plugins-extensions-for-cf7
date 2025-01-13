@@ -118,7 +118,7 @@ class Extensions_Cf7_Pro_Mailchimp_Subscribe{
         'timeout' => 10000
     );
 
-    $merge_field = wp_remote_get( $url_get_merge_fields, $opts );
+    $merge_field = wp_safe_remote_get( $url_get_merge_fields, $opts );
     $mergresbody = wp_remote_retrieve_body( $merge_field );
     $arraymerger = json_decode( $mergresbody, True );
 
@@ -136,7 +136,7 @@ class Extensions_Cf7_Pro_Mailchimp_Subscribe{
                           'body' => $chmp_req,
                         );
 
-                $resp_merg_res = wp_remote_post( $url_edit, $opts );
+                $resp_merg_res = wp_safe_remote_post( $url_edit, $opts );
             }
         }
     }
@@ -158,7 +158,7 @@ class Extensions_Cf7_Pro_Mailchimp_Subscribe{
               'body' => $info,
             );
 
-    $respsubs = wp_remote_post( $url_put, $opts );
+    $respsubs = wp_safe_remote_post( $url_put, $opts );
     $resp 	  = wp_remote_retrieve_body( $respsubs );
 
 

@@ -133,7 +133,7 @@ class Extensions_Cf7_Mailchimp_Map{
             'timeout' => 10000
         );
 
-	    $response = wp_remote_get( $url, $opts );
+	    $response = wp_safe_remote_get( $url, $opts );
 
 	    if ( is_wp_error ( $response ) ) {
 	        $tmp = array( 'valid_api' => 0 );
@@ -181,7 +181,7 @@ class Extensions_Cf7_Mailchimp_Map{
             'timeout' => 10000
         );
 
-        $response 	 = wp_remote_get( $url, $opts );
+        $response 	 = wp_safe_remote_get( $url, $opts );
 
 	    if ( is_wp_error ( $response ) ) {
 
@@ -217,7 +217,7 @@ class Extensions_Cf7_Mailchimp_Map{
             'timeout' => 10000
         );
 
-        $response       = wp_remote_get( $url, $opts ); 
+        $response       = wp_safe_remote_get( $url, $opts ); 
 
         $reapose_body   = wp_remote_retrieve_body( $response );
 
