@@ -43,6 +43,10 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
 	padding: 10px;
 }
 
+.extcf7-export-actions a:not(:first-child) {
+  margin-left: 6px;
+}
+
 /*Conditional Field*/
 #extcf7-conditional-panel{
     position: relative;

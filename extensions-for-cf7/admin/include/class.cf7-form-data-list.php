@@ -74,22 +74,22 @@ class Extensions_Cf7_list extends WP_List_Table
             if(isset($_FILES["file"]["name"]) && !empty($_FILES["file"]["name"])){
                 
                 $sanitiaze_file_name = sanitize_file_name($_FILES["file"]["name"]);
-
                 $fileInfo = wp_check_filetype(basename($sanitiaze_file_name));
-
-                if ( !empty($fileInfo['ext']) && 'csv' == $fileInfo['ext'] ) {
-                    $csv_import_file["name"] = $sanitiaze_file_name;  
-                    $csv_import_file["tmp_name"] = realpath($_FILES["file"]["tmp_name"]);  
-                }else{
-                    $csv_import_file = false; 
+                
+                if (!empty($fileInfo['ext']) && in_array($fileInfo['ext'], ['csv', 'xlsx', 'xls'])) {
+                    $import_file["name"] = $sanitiaze_file_name;  
+                    $import_file["tmp_name"] = realpath($_FILES["file"]["tmp_name"]);
+                    $import_file["ext"] = $fileInfo['ext'];
+                } else {
+                    $import_file = false; 
                     ?>
                     <div class="notice notice-error is-dismissible">
-                        <p><?php echo esc_html__('Invalid file.Please import a csv file','cf7-extensions'); ?></p>
+                        <p><?php echo esc_html__('Invalid file. Please import a CSV or Excel file (.csv, .xlsx, .xls)','cf7-extensions'); ?></p>
                     </div>
                     <?php
                 }
 
-                if($csv_import_file ) $this->import_csv_file($csv_import_file);
+                if($import_file) $this->import_file($import_file);
             }
         }
         
@@ -234,51 +234,98 @@ class Extensions_Cf7_list extends WP_List_Table
 	}
 
     /**
-     * import csv in to database
-     * @param  csv-file
-     * @return array
-    */
-    public function import_csv_file($csv_file){
+     * Import CSV or Excel file into database using Box/Spout
+     * @param array $file File information including name, tmp_name and extension
+     * @return void
+     */
+    public function import_file($file) {
+        if (!class_exists('Box\Spout\Reader\Common\Creator\ReaderEntityFactory')) {
+            require_once CF7_EXTENTIONS_PL_PATH . 'vendor/autoload.php';
+        }
+
         global $wpdb;
-        $csv_import_data = array();
-        $db_formate = array();
+        $db_format = array();
         $current_form_id = absint($_REQUEST['cf7_id']);
-        $file = fopen($csv_file['tmp_name'], "r");
-        $hearder_row = fgetcsv($file);
-        while (($line = fgetcsv($file)) !== FALSE){
 
-            $csv_import_data['form_date'] = $line[0];
-            $csv_import_data['form_id'] = $line[1];
+        try {
+            $readerFactory = \Box\Spout\Reader\Common\Creator\ReaderEntityFactory::class;
 
-            foreach ($line as $k => $value) {
-                if(1 < $k){
-                    $hearder_row[$k] = strtolower($hearder_row[$k]);
-                    $mkey = str_replace( ' ', '_', $hearder_row[$k]);
-                    $csv_import_data['form_value'][$mkey] = $value;
-                }
+            // Create the appropriate reader based on file extension
+            if ($file['ext'] === 'csv') {
+                $reader = $readerFactory::createCSVReader();
+            } else {
+                $reader = $readerFactory::createXLSXReader();
             }
-            $db_formate[] = $csv_import_data;
-        }
-        fclose($file);
 
-        $table_name = $wpdb->prefix . 'extcf7_db';
-        foreach ($db_formate as $value) {
-            $data  = [
-                'form_id'      => $current_form_id,
-                'form_value'   => serialize($value['form_value']),
-                'form_date'    => $value['form_date'],
-            ];
-            $wpdb->insert( $table_name, $data );
-        }
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p><?php echo esc_html__('Successfully Imported CSV File','cf7-extensions'); ?></p>
-        </div>
-        <?php
+            // Open the file
+            $reader->open($file['tmp_name']);
 
+            $isFirstRow = true;
+            $header_row = [];
+
+            // Iterate through all sheets
+            foreach ($reader->getSheetIterator() as $sheet) {
+                // Iterate through all rows of the current sheet
+                foreach ($sheet->getRowIterator() as $row) {
+                    $values = $row->toArray();
+
+                    if ($isFirstRow) {
+                        // Store header row (convert to lowercase)
+                        $header_row = array_map('strtolower', $values);
+                        $isFirstRow = false;
+                        continue;
+                    }
+
+                    // Process data row
+                    $csv_import_data = array();
+                    $csv_import_data['form_date'] = $values[0];
+                    $csv_import_data['form_id'] = $values[1];
+                    $csv_import_data['form_value'] = array();
+
+                    // Map remaining columns using header row
+                    for ($k = 2; $k < count($values); $k++) {
+                        if (isset($header_row[$k])) {
+                            $mkey = str_replace(' ', '_', $header_row[$k]);
+                            $csv_import_data['form_value'][$mkey] = $values[$k];
+                        }
+                    }
+
+                    $db_format[] = $csv_import_data;
+                }
+                // We only need the first sheet
+                break;
+            }
+
+            // Close the reader
+            $reader->close();
+
+            // Insert into database
+            $table_name = $wpdb->prefix . 'extcf7_db';
+            foreach ($db_format as $value) {
+                $data = [
+                    'form_id' => $current_form_id,
+                    'form_value' => serialize($value['form_value']),
+                    'form_date' => $value['form_date'],
+                ];
+                $wpdb->insert($table_name, $data);
+            }
+
+            ?>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo esc_html__('Successfully Imported File', 'cf7-extensions'); ?></p>
+            </div>
+            <?php
+
+        } catch (\Exception $e) {
+            ?>
+            <div class="notice notice-error is-dismissible">
+                <p><?php echo esc_html__('Error importing file: ', 'cf7-extensions') . esc_html($e->getMessage()); ?></p>
+            </div>
+            <?php
+        }
     }
 
-	/**
+    /**
      * Define check box for bulk action (each row)
      * @param  $item
      * @return checkbox
@@ -356,19 +403,28 @@ class Extensions_Cf7_list extends WP_List_Table
             }
         ?>
         <div class="actions alignleft">
-            CSV File
+            File
            <input type="file" name="file" id="file" style="width: 150px;">
            <?php 
-                submit_button(esc_html__('Import CSV','cf7-extensions'),'button','csv-import',false);
+                submit_button(esc_html__('Import','cf7-extensions'),'button','csv-import',false);
             ?>
-        </div> 
+        </div>
         <?php
         endif;
-        $csv_nonce = wp_create_nonce( 'csv_download_nonce' );
 
+        echo '<div class="actions extcf7-export-actions alignleft">';
+
+        $csv_nonce = wp_create_nonce( 'csv_download_nonce' );
         echo "<a href='".esc_attr($_SERVER['REQUEST_URI'])."&download_csv=true&nonce=".esc_attr($csv_nonce)."'class='button'>";
         echo esc_html__( 'Export CSV', 'cf7-extensions' );
         echo '</a>';
+
+        $excel_nonce = wp_create_nonce( 'excel_download_nonce' );
+        echo "<a href='".esc_attr($_SERVER['REQUEST_URI'])."&download_excel=true&nonce=".esc_attr($excel_nonce)."'class='button'>";
+        echo esc_html__( 'Export Excel', 'cf7-extensions' );
+        echo '</a>';
+        
+        echo '</div>';
     }
 
     /**
