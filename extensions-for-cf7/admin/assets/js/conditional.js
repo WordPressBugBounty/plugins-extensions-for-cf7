@@ -223,12 +223,26 @@
         }
     });
 
-    var extcf7_auto_complete_tag = wpcf7.taggen.compose;
-    wpcf7.taggen.compose = function(tagType, $form)
-    {
-        var tag = extcf7_auto_complete_tag.apply(this, arguments);
-        if (tagType== 'fields_group') tag += "[/fields_group]";
-        return tag;
-    };
+
+    // Check if taggen exists before trying to use it
+    if (wpcf7.taggen && typeof wpcf7.taggen.compose === 'function') {
+        var extcf7_auto_complete_tag = wpcf7.taggen.compose;
+        wpcf7.taggen.compose = function(tagType, $form)
+        {
+            var tag = extcf7_auto_complete_tag.apply(this, arguments);
+            if (tagType== 'fields_group') tag += "[/fields_group]";
+            return tag;
+        };
+    } else {
+        const fieldsGroupDialog = document.getElementById('tag-generator-panel-fields_group');
+        document.addEventListener('click', function (e) {
+            if (fieldsGroupDialog.open) {
+                const tag = fieldsGroupDialog.querySelector('[data-tag-part="tag"]');
+                if(tag.value.includes('[fields_group') && !tag.value.includes('[/fields_group]')) {
+                    tag.value += '[/fields_group]';
+                }
+            }
+        })
+    }
 
 })(jQuery);

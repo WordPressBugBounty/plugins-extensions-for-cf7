@@ -38,41 +38,41 @@ class Extensions_Cf7_Range_slider{
     public function metabox_options($value) {
         $value['extcf7_range_slider'] = [
             'id'  => 'range_slider',
-            'label'  => __( 'Range Slider', 'cf7-extensions-pro' ),
+            'label'  => __( 'Range Slider', 'cf7-extensions' ),
             'fields' => [
                 [
-                    'name'  => __( 'Slider', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Slider', 'cf7-extensions' ),
                     'type'  => 'heading',
                     'class' => 'htcf7ext-field-styler group-title-inner',
                     'group' => 'submit_options'
                 ],
                 [
                     'id'  => 'slider_color',
-                    'name'  => __( 'Background Color', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Background Color', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'slider_selection_color',
-                    'name'  => __( 'Background Selection Color', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Background Selection Color', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'slider_height',
-                    'name'  => __( 'Height (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Height (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'slider_radius',
-                    'name'  => __( 'Border Radius (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Radius (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'slider_border_width',
-                    'name'  => __( 'Border Width (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Width (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-33 admin-width-33',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -80,16 +80,16 @@ class Extensions_Cf7_Range_slider{
                 ],
                 [
                     'id'  => 'slider_border_style',
-                    'name'  => __( 'Border Style', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Style', 'cf7-extensions' ),
                     'type'  => 'select',
                     'default'  => '',
                     'options' => array(
-                        '' => __('Select Style', 'cf7-extensions-pro'),
-                        'none' => __('None', 'cf7-extensions-pro'),
-                        'solid' => __('Solid', 'cf7-extensions-pro'),
-                        'dotted' => __('Dotted', 'cf7-extensions-pro'),
-                        'dashed' => __('Dashed', 'cf7-extensions-pro'),
-                        'double' => __('Double', 'cf7-extensions-pro'),
+                        '' => __('Select Style', 'cf7-extensions'),
+                        'none' => __('None', 'cf7-extensions'),
+                        'solid' => __('Solid', 'cf7-extensions'),
+                        'dotted' => __('Dotted', 'cf7-extensions'),
+                        'dashed' => __('Dashed', 'cf7-extensions'),
+                        'double' => __('Double', 'cf7-extensions'),
                     ),
                     'class' => 'htcf7ext-field-styler width-33 admin-width-33',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -97,51 +97,51 @@ class Extensions_Cf7_Range_slider{
                 ],
                 [
                     'id'  => 'slider_border_color',
-                    'name'  => __( 'Border Color', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Color', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-33 admin-width-50',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
                     'group' => 'submit_options'
                 ],
                 [
-                    'name'  => __( 'Slide Handler', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Slide Handler', 'cf7-extensions' ),
                     'type'  => 'heading',
                     'class' => 'htcf7ext-field-styler group-title-inner',
                     'group' => 'submit_options'
                 ],
                 [
                     'id'  => 'handler_color',
-                    'name'  => __( 'Background Color', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Background Color', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'handler_color_hover',
-                    'name'  => __( 'Background Color (Hover)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Background Color (Hover)', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                 ],
                 [
                     'id'  => 'handler_width',
-                    'name'  => __( 'Width (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Width (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-33 admin-width-50',
                 ],
                 [
                     'id'  => 'handler_height',
-                    'name'  => __( 'Height (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Height (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-33 admin-width-50',
                 ],
                 [
                     'id'  => 'handler_radius',
-                    'name'  => __( 'Border Radius (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Radius (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-33 admin-width-50',
                 ],
                 [
                     'id'  => 'handler_border_width',
-                    'name'  => __( 'Border Width (px)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Width (px)', 'cf7-extensions' ),
                     'type'  => 'number',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-33',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -149,16 +149,16 @@ class Extensions_Cf7_Range_slider{
                 ],
                 [
                     'id'  => 'handler_border_style',
-                    'name'  => __( 'Border Style', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Style', 'cf7-extensions' ),
                     'type'  => 'select',
                     'default'  => '',
                     'options' => array(
-                        '' => __('Select Style', 'cf7-extensions-pro'),
-                        'none' => __('None', 'cf7-extensions-pro'),
-                        'solid' => __('Solid', 'cf7-extensions-pro'),
-                        'dotted' => __('Dotted', 'cf7-extensions-pro'),
-                        'dashed' => __('Dashed', 'cf7-extensions-pro'),
-                        'double' => __('Double', 'cf7-extensions-pro'),
+                        '' => __('Select Style', 'cf7-extensions'),
+                        'none' => __('None', 'cf7-extensions'),
+                        'solid' => __('Solid', 'cf7-extensions'),
+                        'dotted' => __('Dotted', 'cf7-extensions'),
+                        'dashed' => __('Dashed', 'cf7-extensions'),
+                        'double' => __('Double', 'cf7-extensions'),
                     ),
                     'class' => 'htcf7ext-field-styler width-50 admin-width-33',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -166,7 +166,7 @@ class Extensions_Cf7_Range_slider{
                 ],
                 [
                     'id'  => 'handler_border_color',
-                    'name'  => __( 'Border Color', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Color', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -174,7 +174,7 @@ class Extensions_Cf7_Range_slider{
                 ],
                 [
                     'id'  => 'handler_border_color_hover',
-                    'name'  => __( 'Border Color (Hover)', 'cf7-extensions-pro' ),
+                    'name'  => __( 'Border Color (Hover)', 'cf7-extensions' ),
                     'type'  => 'color',
                     'class' => 'htcf7ext-field-styler width-50 admin-width-50',
                     'condition' => [['condition_key' => 'form_styler_enable', 'condition_value' => 'on']],
@@ -299,7 +299,7 @@ class Extensions_Cf7_Range_slider{
         if (function_exists('wpcf7_add_form_tag')) {
             wpcf7_add_form_tag(['extcf7_range_slider', 'extcf7_range_slider*'], [$this, 'range_slider_shortcode'], true);
         } else {
-            throw new Exception(esc_html__('functions wpcf7_add_form_tag not found.', 'cf7-extensions-pro'));
+            throw new Exception(esc_html__('functions wpcf7_add_form_tag not found.', 'cf7-extensions'));
         }
     }
     public function range_slider_shortcode($tag){
@@ -355,14 +355,77 @@ class Extensions_Cf7_Range_slider{
         if (! function_exists( 'wpcf7_add_tag_generator')) { 
             return;
         }
+        $callback = htcf7ext_is_tg_v2() ? 'range_slider_layout' : 'range_slider_layout_old';
         wpcf7_add_tag_generator(
 			'extcf7_range_slider',
-			esc_html__('HT Range Slider', 'cf7-extensions-pro'),
+			esc_html__('HT Range Slider', 'cf7-extensions'),
             'wpcf7-tg-extcf7-range-slider',
-            [$this, 'range_slider_layout']
+            [$this, $callback],
+            ['version' => 2]
         );
     }
-    public function range_slider_layout($contact_form, $args = '') {
+
+        public function range_slider_layout($contact_form, $args = '') {
+        $args = wp_parse_args( $args, [] );
+        $tgg = new WPCF7_TagGeneratorGenerator( $args['content'] );
+        ?>
+        <header class="description-box">
+            <h3><?php echo esc_html__( 'HT Range Slider', 'cf7-extensions' ); ?></h3>
+            <p><?php echo esc_html__( "Generate a form tag for Range Slider.", 'cf7-extensions' ); ?></p>
+        </header>
+
+        <div class="control-box">
+            <fieldset>
+                <legend><?php echo esc_html__( 'Field type', 'cf7-extensions' ); ?></legend>
+                <input type="hidden" data-tag-part="basetype" value="extcf7_range_slider" />
+                <label><input type="checkbox" name="required" data-tag-part="type-suffix" value="*" /> <?php echo esc_html__( 'Required field', 'cf7-extensions' ); ?></label>
+            </fieldset>
+
+            <?php
+            $tgg->print( 'field_name' );
+            ?>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Show Values', 'cf7-extensions' ); ?></legend>
+                <label><input type="radio" name="show_value" data-tag-part="option" data-tag-option="show_value:" value="on" /> <?php echo esc_html__( 'On', 'cf7-extensions' ); ?></label>
+                <label><input type="radio" name="show_value" data-tag-part="option" data-tag-option="show_value:" value="off" /> <?php echo esc_html__( 'Off', 'cf7-extensions' ); ?></label>
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Slider Type', 'cf7-extensions' ); ?></legend>
+                <label><input type="radio" name="slider_type" data-tag-part="option" data-tag-option="slider_type:" value="single" /> <?php echo esc_html__( 'Single Handle', 'cf7-extensions' ); ?></label>
+                <label><input type="radio" name="slider_type" data-tag-part="option" data-tag-option="slider_type:" value="double" /> <?php echo esc_html__( 'Double Handle', 'cf7-extensions' ); ?></label>
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Minimum Value', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="minimum_value" data-tag-part="option" data-tag-option="minimum_value:" class="minimum-value oneline option" placeholder="10" />
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Maximum Value', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="maximum_value" data-tag-part="option" data-tag-option="maximum_value:" class="maximum-value oneline option" placeholder="100" />
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Default Value', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="default_value" data-tag-part="option" data-tag-option="default_value:" class="default-value oneline option" placeholder="50" />
+                <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma ("-"). If you only set one value, the other will default to the maximum value. Example: 20-70','cf7-extensions' ) ?></p>
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Range Step', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="range_step" data-tag-part="option" data-tag-option="range_step:" class="range-step oneline option" placeholder="1" />
+            </fieldset>
+        </div>
+
+        <footer class="insert-box">
+            <?php $tgg->print( 'insert_box_content' ); ?>
+        </footer>
+        <?php
+    }
+
+    public function range_slider_layout_old($contact_form, $args = '') {
         $args = wp_parse_args( $args, [] );
         $type = 'extcf7_range_slider';
         ?>
@@ -370,53 +433,53 @@ class Extensions_Cf7_Range_slider{
                 <table class="form-table">
                     <tbody>
                         <tr>
-                            <th scope="row"><?php echo esc_html__( 'Field type', 'cf7-extensions-pro' ); ?></th>
+                            <th scope="row"><?php echo esc_html__( 'Field type', 'cf7-extensions' ); ?></th>
                             <td>
                                 <fieldset>
-                                    <legend class="screen-reader-text"><?php echo esc_html__( 'Field type', 'cf7-extensions-pro' ); ?></legend>
-                                    <label><input type="checkbox" name="required" /> <?php echo esc_html__( 'Required field', 'cf7-extensions-pro' ); ?></label>
+                                    <legend class="screen-reader-text"><?php echo esc_html__( 'Field type', 'cf7-extensions' ); ?></legend>
+                                    <label><input type="checkbox" name="required" /> <?php echo esc_html__( 'Required field', 'cf7-extensions' ); ?></label>
                                 </fieldset>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html__( 'Name', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html__( 'Name', 'cf7-extensions' ); ?></label></th>
                             <td><input type="text" name="name" class="tg-name" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" /></td>
                         </tr>
                         <tr>
-                            <th scope="row"><label><?php echo esc_html__( 'Show Values', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label><?php echo esc_html__( 'Show Values', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <label for="show_value_on"><input type="radio" name="show_value" class="option" id="show_value_on" value="on" />On</label>
                                 <label for="show_value_off"><input type="radio" name="show_value" class="option" id="show_value_off" value="off" />Off</label>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label><?php echo esc_html__( 'Slider Type', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label><?php echo esc_html__( 'Slider Type', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <label for="slider_type_single"><input type="radio" name="slider_type" class="option" id="slider_type_single" value="single" />Single Handle</label>
                                 <label for="slider_type_double"><input type="radio" name="slider_type" class="option" id="slider_type_double" value="double" />Double Handle</label>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-minimum-value' ); ?>"><?php echo esc_html__( 'Minimum Value', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-minimum-value' ); ?>"><?php echo esc_html__( 'Minimum Value', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <input type="text" name="minimum_value" class="minimum-value oneline option" placeholder="10" id="<?php echo esc_attr( $args['content'] . '-minimum-value' ); ?>" />
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-maximum-value' ); ?>"><?php echo esc_html__( 'Maximum Value', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-maximum-value' ); ?>"><?php echo esc_html__( 'Maximum Value', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <input type="text" name="maximum_value" class="maximum-value oneline option" placeholder="100" id="<?php echo esc_attr( $args['content'] . '-maximum-value' ); ?>" />
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-default-value' ); ?>"><?php echo esc_html__( 'Default Value', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-default-value' ); ?>"><?php echo esc_html__( 'Default Value', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <input type="text" name="default_value" class="default-value oneline option" placeholder="50" id="<?php echo esc_attr( $args['content'] . '-default-value' ); ?>" />
-                                <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma ("-"). If you only set one value, the other will default to the maximum value. Example: 20-70','cf7-extensions-pro' ) ?></p>
+                                <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma ("-"). If you only set one value, the other will default to the maximum value. Example: 20-70','cf7-extensions' ) ?></p>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-range-step' ); ?>"><?php echo esc_html__( 'Range Step', 'cf7-extensions-pro' ); ?></label></th>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-range-step' ); ?>"><?php echo esc_html__( 'Range Step', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <input type="text" name="range_step" class="range-step oneline option" placeholder="1" id="<?php echo esc_attr( $args['content'] . '-range-step' ); ?>" />
                             </td>
@@ -427,7 +490,7 @@ class Extensions_Cf7_Range_slider{
             <div class="insert-box">
                 <input type="text" name="<?php echo esc_attr( $type ); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
                 <div class="submitbox">
-                    <input type="button" class="button button-primary insert-tag" value="<?php esc_html_e( 'Insert Tag', 'cf7-extensions-pro' ); ?>" />
+                    <input type="button" class="button button-primary insert-tag" value="<?php esc_html_e( 'Insert Tag', 'cf7-extensions' ); ?>" />
                 </div>
                 <br class="clear" />
             </div>

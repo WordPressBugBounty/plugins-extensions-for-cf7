@@ -98,7 +98,8 @@ class Extensions_Cf7_Column{
 			'extcf7_column',
 			esc_html__('HT Column', 'cf7-extensions'),
             'wpcf7-tg-extcf7-column',
-            [$this, 'column_layout']
+            [$this, 'column_layout'],
+            ['version' => 2]
         );
 
     }

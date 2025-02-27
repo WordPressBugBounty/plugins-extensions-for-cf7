@@ -59,16 +59,44 @@ class Extensions_Cf7_Conditional {
 	public function extcf7_tag_generator() {
         if (! function_exists( 'wpcf7_add_tag_generator'))
             return;
-        //echo "contact form 7 tag generator";
+        $callback = htcf7ext_is_tg_v2() ? 'extcf7_tg_layout' : 'extcf7_tg_layout_old';
         wpcf7_add_tag_generator('fields_group',
             esc_html__('Conditional Fields', 'cf7-extensions'),
             'wpcf7-tg-fields-group',
-            array($this, 'extcf7_tg_layout')
+            [$this, $callback],
+            ['version' => 2]
         );
-
     }
 
-    public function extcf7_tg_layout($contact_form, $args = ''){
+	public function extcf7_tg_layout($contact_form, $args = ''){
+        $args = wp_parse_args( $args, [] );
+        $tgg = new WPCF7_TagGeneratorGenerator( $args['content'] );
+        ?>
+        <header class="description-box">
+            <h3><?php echo esc_html__( 'HT Conditional Fields', 'cf7-extensions-pro' ); ?></h3>
+            <p><?php echo esc_html__( 'Generate a fields_group tag to unite form elements that can be shown conditionally.', 'cf7-extensions-pro' ); ?></p>
+        </header>
+
+        <div class="control-box">
+            <input type="hidden" data-tag-part="basetype" value="fields_group" />
+            
+            <?php
+            $tgg->print( 'field_name' );
+            ?>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Clear field on hide', 'cf7-extensions-pro' ); ?></legend>
+                <label><input type="checkbox" name="clear_field_on_hide" data-tag-part="option" data-tag-option="clear_field_on_hide:" value="1" /> <?php echo esc_html__( 'Clear field on hide', 'cf7-extensions-pro' ); ?></label>
+            </fieldset>
+        </div>
+
+        <footer class="insert-box">
+            <?php $tgg->print( 'insert_box_content' ); ?>
+        </footer>
+        <?php
+    }
+
+    public function extcf7_tg_layout_old($contact_form, $args = ''){
     	$args = wp_parse_args( $args, array() );
         $type = 'fields_group';
 

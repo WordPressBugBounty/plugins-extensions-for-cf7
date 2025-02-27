@@ -122,3 +122,9 @@ function htcf7ext_update_menu_badge() {
     }
 
 }
+
+if( !function_exists('htcf7ext_is_tg_v2') ) {
+    function htcf7ext_is_tg_v2() {
+        return version_compare( WPCF7_VERSION, '6.0' ) >= 0 ;
+    }
+}

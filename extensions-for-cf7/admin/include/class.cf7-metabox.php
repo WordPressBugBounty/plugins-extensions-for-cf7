@@ -48,7 +48,7 @@ class Extensions_Cf7_Metabox {
         ?>
         <div id="extcf7-metabox" class="extcf7-metabox">
             <div class="extcf7-metabox-header">
-                <h3 class="extcf7-metabox-title"><?php esc_html_e('Extensions for CF7 Options', 'cf7-extensions-pro')?></h3>
+                <h3 class="extcf7-metabox-title"><?php esc_html_e('Extensions for CF7 Options', 'cf7-extensions')?></h3>
             </div>
             <div class="extcf7-metabox-sidebar">
                 <div class="extcf7-metabox-sidebar-tab">

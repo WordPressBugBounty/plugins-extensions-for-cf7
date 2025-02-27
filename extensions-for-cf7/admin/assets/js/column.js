@@ -1,5 +1,6 @@
 ;(function ($) {
     'use strict';
+    const dialog = document.querySelector('dialog#tag-generator-panel-extcf7_column');
 	$(document).on( 'click', '.extcf7-column-select', function(e){
         e.preventDefault();
         const form = document.getElementById("wpcf7-form"),
@@ -10,6 +11,7 @@
         const newPos = curPos + code.length;
         form.setSelectionRange(newPos, newPos);
         form.focus();
+        dialog?.close();
         tb_remove();
 	});
 })(jQuery);

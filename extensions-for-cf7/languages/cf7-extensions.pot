@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Extensions For CF7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-22 08:44+0000\n"
+"POT-Creation-Date: 2025-02-27 06:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. %1$s: strong start tag
 #. %2$s: strong end tag
-#: includes/class.cf7-extensions.php:205
+#: includes/class.cf7-extensions.php:238
 #, php-format
 msgid ""
 "%1$sExtensions For CF7 %2$s requires %1$s\"Contact Form 7\"%2$s plugin to be "
@@ -27,7 +27,7 @@ msgstr ""
 
 #. %1$s: strong start tag
 #. %2$s: strong end tag
-#: includes/class.cf7-extensions.php:216
+#: includes/class.cf7-extensions.php:249
 #, php-format
 msgid ""
 "%1$sExtensions For CF7.%2$s requires %1$s\"Contact Form 7\"%2$s plugin to be "
@@ -52,11 +52,11 @@ msgstr ""
 msgid "- Use the tag [confirm-subscribe] in the MailChimp's settings as like"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:108
+#: admin/include/class.cf7-conditional.php:136
 msgid "-- Select field --"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:93
+#: admin/include/class.cf7-conditional.php:121
 msgid "-- Select group --"
 msgstr ""
 
@@ -64,24 +64,24 @@ msgstr ""
 msgid "---select---"
 msgstr ""
 
-#: admin/include/class.cf7-column.php:114
+#: admin/include/class.cf7-column.php:115
 msgid "1 Column"
 msgstr ""
 
-#: admin/include/class.cf7-column.php:127
+#: admin/include/class.cf7-column.php:130
 msgid "2 Column"
 msgstr ""
 
-#: admin/include/class.cf7-column.php:141
+#: admin/include/class.cf7-column.php:147
 msgid "3 Column"
 msgstr ""
 
-#: admin/include/class.cf7-column.php:156
+#: admin/include/class.cf7-column.php:166
 msgid "4 Column"
 msgstr ""
 
 #: admin/template/pro-feature-list.php:46
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:305
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:323
 msgid "Acceptance Field"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: includes/class.cf7-extensions.php:206
+#: includes/class.cf7-extensions.php:239
 msgid "Activate Contact Form 7"
 msgstr ""
 
@@ -137,11 +137,11 @@ msgid "Add New Condition"
 msgstr ""
 
 #: admin/template/pro-feature-list.php:30
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:287
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:305
 msgid "Advanced Telephone"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:10
+#: admin/settings-panel/includes/templates/sidebar-banner.php:11
 msgid "Advanced Telephone (Flag and Country Code)"
 msgstr ""
 
@@ -153,20 +153,20 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:121
+#: admin/settings-panel/includes/classes/Admin/Menu.php:122
 msgid "All Data Restored"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:131
+#: admin/settings-panel/includes/classes/Admin/Menu.php:132
 msgid "All settings has been reset successfully."
 msgstr ""
 
 #: admin/template/pro-feature-list.php:22
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:278
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:296
 msgid "Already Submitted"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:12
+#: admin/settings-panel/includes/templates/sidebar-banner.php:13
 msgid "Already Submitted Message"
 msgstr ""
 
@@ -189,8 +189,12 @@ msgstr ""
 msgid "Animation Out Time"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:537
+#: admin/include/class.cf7-form-data-list.php:593
 msgid "Apply"
+msgstr ""
+
+#: admin/include/class.notices.php:82
+msgid "Are you cheating?"
 msgstr ""
 
 #: admin/include/class.cf7-extensions-recomendation.php:155
@@ -200,12 +204,12 @@ msgid ""
 "the product variations in a whole new light with Swatchly."
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:294
-#: admin/include/class.cf7-form-data-list.php:303
+#: admin/include/class.cf7-form-data-list.php:341
+#: admin/include/class.cf7-form-data-list.php:350
 msgid "Are you sure to delete this file"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:124
+#: admin/settings-panel/includes/classes/Admin/Menu.php:125
 msgid "Are you sure?"
 msgstr ""
 
@@ -214,7 +218,7 @@ msgstr ""
 #. %3$s: strong end tag
 #. %4$s: a tag start
 #. %5$s: a tag end
-#: admin/include/class-diagnostic-data.php:493
+#: admin/include/class-diagnostic-data.php:572
 #, php-format
 msgid ""
 "At %2$s%1$s%3$s, we prioritize continuous improvement and compatibility. To "
@@ -233,22 +237,59 @@ msgstr ""
 msgid "Attachment :"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:251
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:269
 msgid "Autocomplete IP Geo Fields (Country, City, State, Zip)"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:531
+#: admin/include/class.cf7-range-slider.php:51
+#: admin/include/class.cf7-range-slider.php:114
+msgid "Background Color"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:120
+msgid "Background Color (Hover)"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:57
+msgid "Background Selection Color"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:100
+#: admin/include/class.cf7-range-slider.php:169
+msgid "Border Color"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:177
+msgid "Border Color (Hover)"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:69
+#: admin/include/class.cf7-range-slider.php:138
+msgid "Border Radius (px)"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:83
+#: admin/include/class.cf7-range-slider.php:152
+msgid "Border Style"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:75
+#: admin/include/class.cf7-range-slider.php:144
+msgid "Border Width (px)"
+msgstr ""
+
+#: admin/include/class.cf7-form-data-list.php:587
 msgid "Bulk Actions"
 msgstr ""
 
 #: admin/include/Recommended_Plugins.php:127
 #: admin/include/Recommended_Plugins.php:235
 #: admin/include/Recommended_Plugins.php:289
-#: admin/settings-panel/includes/classes/Admin/Menu.php:106
+#: admin/settings-panel/includes/classes/Admin/Menu.php:107
 msgid "Buy Now"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:105
+#: admin/settings-panel/includes/classes/Admin/Menu.php:106
 msgid "BUY PRO"
 msgstr ""
 
@@ -273,7 +314,7 @@ msgstr ""
 msgid "Clear field on hide"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:243
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:251
 msgid "Column Field"
 msgstr ""
 
@@ -281,7 +322,7 @@ msgstr ""
 msgid "Conditional Field"
 msgstr ""
 
-#: admin/admin-init.php:90
+#: admin/admin-init.php:92
 msgid "Conditional Field Options"
 msgstr ""
 
@@ -289,13 +330,13 @@ msgstr ""
 msgid "Conditional Fields"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:127
+#: admin/include/class.cf7-conditional.php:155
 #: admin/include/class.cf7-mailchimp-map.php:53
 #: admin/template/conditional-field-layout.php:9
 msgid "Conditional fields"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:82
+#: admin/include/class.cf7-conditional.php:110
 msgid "Conditional fields Settings"
 msgstr ""
 
@@ -331,7 +372,7 @@ msgid ""
 "addition to its basic features."
 msgstr ""
 
-#: admin/include/class-diagnostic-data.php:500
+#: admin/include/class-diagnostic-data.php:579
 msgid "Count Me In"
 msgstr ""
 
@@ -352,7 +393,12 @@ msgstr ""
 msgid "Custom URL"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:112
+#: admin/include/class.cf7-range-slider.php:91
+#: admin/include/class.cf7-range-slider.php:160
+msgid "Dashed"
+msgstr ""
+
+#: admin/settings-panel/includes/classes/Admin/Menu.php:113
 msgid "Data Saved"
 msgstr ""
 
@@ -360,8 +406,9 @@ msgstr ""
 msgid "DataCaptia"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:321
+#: admin/include/class.cf7-form-data-list.php:368
 #: admin/include/class.download-csv.php:56
+#: admin/include/class.download-excel.php:61
 msgid "Date"
 msgstr ""
 
@@ -373,9 +420,14 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:294
-#: admin/include/class.cf7-form-data-list.php:303
-#: admin/include/class.cf7-form-data-list.php:381
+#: admin/include/class.cf7-range-slider.php:411
+#: admin/include/class.cf7-range-slider.php:475
+msgid "Default Value"
+msgstr ""
+
+#: admin/include/class.cf7-form-data-list.php:341
+#: admin/include/class.cf7-form-data-list.php:350
+#: admin/include/class.cf7-form-data-list.php:437
 msgid "Delete"
 msgstr ""
 
@@ -383,8 +435,12 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:116
+#: admin/settings-panel/includes/classes/Admin/Menu.php:117
 msgid "Disable All"
+msgstr ""
+
+#: admin/include/class.notices.php:282
+msgid "Dismiss this notice."
 msgstr ""
 
 #: admin/include/class.cf7-extensions-recomendation.php:269
@@ -403,7 +459,21 @@ msgstr ""
 msgid "Don't need to use <script> tag."
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:9
+#: admin/include/class.cf7-range-slider.php:90
+#: admin/include/class.cf7-range-slider.php:159
+msgid "Dotted"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:92
+#: admin/include/class.cf7-range-slider.php:161
+msgid "Double"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:397
+msgid "Double Handle"
+msgstr ""
+
+#: admin/settings-panel/includes/templates/sidebar-banner.php:10
 msgid "Drag & Drop File Upload"
 msgstr ""
 
@@ -412,7 +482,7 @@ msgid "Drag & Drop File Upload: "
 msgstr ""
 
 #: admin/template/pro-feature-list.php:38
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:296
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:314
 msgid "Drag and Drop File Upload"
 msgstr ""
 
@@ -441,7 +511,7 @@ msgstr ""
 msgid "empty list"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:115
+#: admin/settings-panel/includes/classes/Admin/Menu.php:116
 msgid "Enable All"
 msgstr ""
 
@@ -485,17 +555,25 @@ msgstr ""
 msgid "equal"
 msgstr ""
 
-#: includes/class.cf7-extensions.php:229
+#: admin/include/class.cf7-form-data-list.php:322
+msgid "Error importing file: "
+msgstr ""
+
+#: includes/class.cf7-extensions.php:262
 msgid ""
 "Error: Contact Form 7 version is too old. Extensions For CF7 is compatible "
 "from version 5.3 and above. Please update Contact Form 7."
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:370
+#: admin/include/class.cf7-form-data-list.php:419
 msgid "Export CSV"
 msgstr ""
 
-#: admin/admin-init.php:137
+#: admin/include/class.cf7-form-data-list.php:424
+msgid "Export Excel"
+msgstr ""
+
+#: admin/admin-init.php:139
 #: admin/settings-panel/includes/classes/Admin/Menu.php:38
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:60
 msgid "Extensions"
@@ -517,6 +595,10 @@ msgid ""
 "are listed below."
 msgstr ""
 
+#: admin/include/class.cf7-metabox.php:51
+msgid "Extensions for CF7 Options"
+msgstr ""
+
 #: admin/include/class.cf7-extensions-recomendation.php:188
 msgid "Extensions For CF7 Pro"
 msgstr ""
@@ -525,15 +607,30 @@ msgstr ""
 msgid "Faster YouTube Embed"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:349
+#: admin/include/class.cf7-range-slider.php:379
+#: admin/include/class.cf7-range-slider.php:436
+#: admin/include/class.cf7-range-slider.php:439
+msgid "Field type"
+msgstr ""
+
+#: admin/include/class.cf7-form-data-list.php:396
 msgid "Filter"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:319
+#: admin/include/class.cf7-range-slider.php:413
+#: admin/include/class.cf7-range-slider.php:478
+msgid ""
+"For the \"Double Handle\" slider type, you can set two values separated by a "
+"comma (\"-\"). If you only set one value, the other will default to the "
+"maximum value. Example: 20-70"
+msgstr ""
+
+#: admin/include/class.cf7-form-data-list.php:366
 msgid "Form Data"
 msgstr ""
 
 #: admin/include/class.download-csv.php:56
+#: admin/include/class.download-excel.php:61
 msgid "Form Id"
 msgstr ""
 
@@ -542,7 +639,11 @@ msgstr ""
 msgid "Form Name"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:320
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:259
+msgid "Form Styler"
+msgstr ""
+
+#: admin/include/class.cf7-form-data-list.php:367
 msgid "Form Title"
 msgstr ""
 
@@ -562,7 +663,7 @@ msgid ""
 "loading speed."
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:332
+#: admin/include/class.cf7-form-data-list.php:379
 msgid "From"
 msgstr ""
 
@@ -571,21 +672,26 @@ msgid "functions wpcf7_add_form_tag and wpcf7_add_shortcode not found."
 msgstr ""
 
 #: admin/include/class.cf7-column.php:39
+#: admin/include/class.cf7-range-slider.php:302
 msgid "functions wpcf7_add_form_tag not found."
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:11
+#: admin/settings-panel/includes/templates/sidebar-banner.php:12
 msgid "GDPR Field to take permission"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:75
+#: admin/include/class.cf7-conditional.php:103
 msgid ""
 "Generate a fields_group tag to unite form elements that can be shown "
 "conditionally."
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:374
+msgid "Generate a form tag for Range Slider."
+msgstr ""
+
 #: admin/template/pro-feature-list.php:79
-#: admin/settings-panel/includes/templates/sidebar-banner.php:15
+#: admin/settings-panel/includes/templates/sidebar-banner.php:16
 msgid "Get Pro Now"
 msgstr ""
 
@@ -593,7 +699,7 @@ msgstr ""
 msgid "Get pro now"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:22
+#: admin/settings-panel/includes/templates/sidebar-banner.php:23
 msgid "Get Support"
 msgstr ""
 
@@ -607,7 +713,7 @@ msgstr ""
 msgid "Go To Conditional Settings"
 msgstr ""
 
-#: admin/admin-init.php:119 admin/template/conditional-setting.php:49
+#: admin/admin-init.php:121 admin/template/conditional-setting.php:49
 msgid "Go To Contact Form 7 Editor"
 msgstr ""
 
@@ -649,6 +755,11 @@ msgstr ""
 msgid "HasThemes"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:63
+#: admin/include/class.cf7-range-slider.php:132
+msgid "Height (px)"
+msgstr ""
+
 #: admin/template/mailchimp-pannel-layout.php:25
 msgid "here"
 msgstr ""
@@ -687,6 +798,11 @@ msgstr ""
 
 #: admin/include/class.cf7-extensions-recomendation.php:224
 msgid "HT Menu Pro"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:361
+#: admin/include/class.cf7-range-slider.php:373
+msgid "HT Range Slider"
 msgstr ""
 
 #: admin/include/class.cf7-extensions-recomendation.php:91
@@ -742,6 +858,10 @@ msgstr ""
 msgid "https://hasthemes.com/"
 msgstr ""
 
+#: includes/class.cf7-extensions.php:341
+msgid "I already did"
+msgstr ""
+
 #: admin/settings-panel/includes/templates/dashboard-forms.php:32
 msgid "ID"
 msgstr ""
@@ -754,7 +874,7 @@ msgid ""
 "Review"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:21
+#: admin/settings-panel/includes/templates/sidebar-banner.php:22
 msgid ""
 "If you have any questions, concerns, or feedback, please do not hesitate to "
 "reach out to us. We are always available and ready to assist you with your "
@@ -774,8 +894,8 @@ msgid ""
 "WordPress community know by"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:362
-msgid "Import CSV"
+#: admin/include/class.cf7-form-data-list.php:409
+msgid "Import"
 msgstr ""
 
 #: admin/template/conditional-setting.php:33
@@ -797,7 +917,7 @@ msgid ""
 "milliseconds and it will be applied for each field. Default Value:250"
 msgstr ""
 
-#: admin/admin-init.php:113
+#: admin/admin-init.php:115
 msgid ""
 "Input a positive integer value for the dalay of redirection. The values in "
 "milliseconds(Default:200)"
@@ -827,19 +947,20 @@ msgid ""
 "update."
 msgstr ""
 
-#: admin/include/class.cf7-column.php:176
+#: admin/include/class.cf7-column.php:191
+#: admin/include/class.cf7-range-slider.php:493
 #: admin/template/fields-group-layout.php:30
 msgid "Insert Tag"
 msgstr ""
 
-#: admin/include/class.cf7-column.php:115
-#: admin/include/class.cf7-column.php:128
-#: admin/include/class.cf7-column.php:142
-#: admin/include/class.cf7-column.php:157
+#: admin/include/class.cf7-column.php:118
+#: admin/include/class.cf7-column.php:134
+#: admin/include/class.cf7-column.php:152
+#: admin/include/class.cf7-column.php:172
 msgid "Insert tag"
 msgstr ""
 
-#: includes/class.cf7-extensions.php:217
+#: includes/class.cf7-extensions.php:250
 msgid "Install Contact Form 7"
 msgstr ""
 
@@ -856,7 +977,7 @@ msgid "Invalid Api Key"
 msgstr ""
 
 #: admin/include/class.cf7-form-data-list.php:87
-msgid "Invalid file.Please import a csv file"
+msgid "Invalid file. Please import a CSV or Excel file (.csv, .xlsx, .xls)"
 msgstr ""
 
 #: admin/include/class.cf7-form-data-detail.php:153
@@ -874,7 +995,7 @@ msgstr ""
 msgid "IP Address :"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:125
+#: admin/settings-panel/includes/classes/Admin/Menu.php:126
 msgid ""
 "It will reset all the settings to default, and all the changes you made will "
 "be deleted."
@@ -943,12 +1064,26 @@ msgstr ""
 msgid "Map Contact Form 7 Fields with Mailchimp Field"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:382
+#: admin/include/class.cf7-form-data-list.php:438
 msgid "Mark as Read"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:383
+#: admin/include/class.cf7-form-data-list.php:439
 msgid "Mark as Unread"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:406
+#: admin/include/class.cf7-range-slider.php:469
+msgid "Maximum Value"
+msgstr ""
+
+#: includes/class.cf7-extensions.php:340
+msgid "Maybe Later"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:401
+#: admin/include/class.cf7-range-slider.php:463
+msgid "Minimum Value"
 msgstr ""
 
 #: admin/include/Recommended_Plugins.php:297
@@ -970,11 +1105,12 @@ msgid ""
 "switch to their preferred currency or their country’s currency."
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:445
 #: admin/template/fields-group-layout.php:9
 msgid "Name"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:127
+#: admin/settings-panel/includes/classes/Admin/Menu.php:128
 msgid "No"
 msgstr ""
 
@@ -982,15 +1118,16 @@ msgstr ""
 msgid "No data found!"
 msgstr ""
 
-#: admin/include/class-diagnostic-data.php:503
+#: admin/include/class-diagnostic-data.php:582
 msgid "No, Thanks"
 msgstr ""
 
-#: admin/include/class-diagnostic-data.php:168
-msgid "Nonce Varification fail"
+#: admin/include/class.cf7-range-slider.php:88
+#: admin/include/class.cf7-range-slider.php:157
+msgid "None"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:448
+#: admin/include/class.cf7-form-data-list.php:504
 msgid "Nope! Security check failed!"
 msgstr ""
 
@@ -1007,9 +1144,11 @@ msgid "Not valid contact form"
 msgstr ""
 
 #: admin/include/class.download-csv.php:21
+#: admin/include/class.download-excel.php:24
 msgid "Not Valid.. Download Request..!!"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:391
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:118
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:127
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:148
@@ -1022,19 +1161,26 @@ msgstr ""
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:231
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:247
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:255
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:264
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:263
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:273
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:282
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:291
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:300
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:309
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:318
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:327
 msgid "Off"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:132
+#: admin/settings-panel/includes/classes/Admin/Menu.php:133
 msgid "OK"
 msgstr ""
 
+#: includes/class.cf7-extensions.php:339
+msgid "Ok, you deserve it!"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:390
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:117
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:126
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:147
@@ -1047,12 +1193,14 @@ msgstr ""
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:230
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:246
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:254
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:263
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:262
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:272
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:281
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:290
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:299
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:308
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:317
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:326
 msgid "On"
 msgstr ""
 
@@ -1060,7 +1208,7 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:107
+#: admin/settings-panel/includes/classes/Admin/Menu.php:108
 msgid ""
 "Our free version is great, but it doesn't have all our advanced features. "
 "The best way to unlock all of the features in our plugin is by purchasing "
@@ -1079,7 +1227,7 @@ msgstr ""
 msgid "Please save your form first"
 msgstr ""
 
-#: admin/include/class.cf7-conditional.php:128
+#: admin/include/class.cf7-conditional.php:156
 msgid "Please save your form first before adding condition."
 msgstr ""
 
@@ -1096,7 +1244,7 @@ msgid "Plugin Successfully Activated"
 msgstr ""
 
 #: admin/template/pro-feature-list.php:6
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:260
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:278
 msgid "Popup Form Response"
 msgstr ""
 
@@ -1112,7 +1260,7 @@ msgstr ""
 msgid "Preview Link Generator"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:103
+#: admin/settings-panel/includes/classes/Admin/Menu.php:104
 msgid "Pro"
 msgstr ""
 
@@ -1122,6 +1270,16 @@ msgstr ""
 
 #: admin/include/class.cf7-extensions-recomendation.php:315
 msgid "QuickSwish"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:41
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:243
+msgid "Range Slider"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:417
+#: admin/include/class.cf7-range-slider.php:482
+msgid "Range Step"
 msgstr ""
 
 #: admin/template/pro-feature-list.php:87
@@ -1153,7 +1311,7 @@ msgstr ""
 msgid "Redirection"
 msgstr ""
 
-#: admin/admin-init.php:110
+#: admin/admin-init.php:112
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:152
 msgid "Redirection Delay"
 msgstr ""
@@ -1163,7 +1321,7 @@ msgstr ""
 msgid "Redirection Options"
 msgstr ""
 
-#: admin/admin-init.php:100
+#: admin/admin-init.php:102
 msgid "Redirection Setting"
 msgstr ""
 
@@ -1182,8 +1340,8 @@ msgid "Remove"
 msgstr ""
 
 #: admin/template/pro-feature-list.php:14
-#: admin/settings-panel/includes/templates/sidebar-banner.php:8
-#: admin/settings-panel/includes/classes/Admin/Options_field.php:269
+#: admin/settings-panel/includes/templates/sidebar-banner.php:9
+#: admin/settings-panel/includes/classes/Admin/Options_field.php:287
 msgid "Repeater Field"
 msgstr ""
 
@@ -1210,27 +1368,32 @@ msgstr ""
 msgid "Required by MailChimp"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:381
+#: admin/include/class.cf7-range-slider.php:440
+msgid "Required field"
+msgstr ""
+
 #: admin/template/mailchimp-pannel-layout.php:142
 msgid "Required User Aacceptance"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:119
+#: admin/settings-panel/includes/classes/Admin/Menu.php:120
 msgid "Reset All Settings"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:130
+#: admin/settings-panel/includes/classes/Admin/Menu.php:131
 msgid "Reset!"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:120
+#: admin/settings-panel/includes/classes/Admin/Menu.php:121
 msgid "Resetting..."
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:110
+#: admin/settings-panel/includes/classes/Admin/Menu.php:111
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:111
+#: admin/settings-panel/includes/classes/Admin/Menu.php:112
 msgid "Saving..."
 msgstr ""
 
@@ -1249,13 +1412,18 @@ msgstr ""
 msgid "Select Mailchimp Field"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:87
+#: admin/include/class.cf7-range-slider.php:156
+msgid "Select Style"
+msgstr ""
+
 #: admin/template/mailchimp-pannel-layout.php:61
 msgid "Selected tag will be send as subscriber name."
 msgstr ""
 
 #. %1$s: a tag start
 #. %2$s: a tag end
-#: admin/include/class-diagnostic-data.php:498
+#: admin/include/class-diagnostic-data.php:577
 #, php-format
 msgid ""
 "Server information (Web server, PHP version, MySQL version), WordPress "
@@ -1277,7 +1445,7 @@ msgstr ""
 msgid "Set the fields value to use these features"
 msgstr ""
 
-#: admin/admin-init.php:127 includes/class.cf7-extensions.php:149
+#: admin/admin-init.php:129 includes/class.cf7-extensions.php:174
 msgid "Settings"
 msgstr ""
 
@@ -1285,8 +1453,35 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:389
+#: admin/include/class.cf7-range-slider.php:449
+msgid "Show Values"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:396
+msgid "Single Handle"
+msgstr ""
+
 #: admin/include/class.cf7-extensions-recomendation.php:339
 msgid "Sirve – Simple Directory Listing"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:107
+msgid "Slide Handler"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:44
+msgid "Slider"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:395
+#: admin/include/class.cf7-range-slider.php:456
+msgid "Slider Type"
+msgstr ""
+
+#: admin/include/class.cf7-range-slider.php:89
+#: admin/include/class.cf7-range-slider.php:158
+msgid "Solid"
 msgstr ""
 
 #: admin/include/class.cf7-form-data-detail.php:41
@@ -1338,11 +1533,11 @@ msgstr ""
 msgid "Subscription"
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:275
-msgid "Successfully Imported CSV File"
+#: admin/include/class.cf7-form-data-list.php:315
+msgid "Successfully Imported File"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:20
+#: admin/settings-panel/includes/templates/sidebar-banner.php:21
 msgid "Support And Feedback"
 msgstr ""
 
@@ -1356,10 +1551,16 @@ msgstr ""
 msgid "Text Mode"
 msgstr ""
 
+#: includes/class.cf7-extensions.php:336
+msgid ""
+"Thank you for choosing Extensions For CF7 to extends Contact Form 7 "
+"functionalities."
+msgstr ""
+
 #. %1$s: project name
 #. %2$s: strong start tag
 #. %3$s: strong end tag
-#: admin/include/class-diagnostic-data.php:532
+#: admin/include/class-diagnostic-data.php:609
 #, php-format
 msgid "Thank you very much for supporting %2$s%1$s%3$s."
 msgstr ""
@@ -1376,7 +1577,7 @@ msgid ""
 "form submission, it means You have a problem with your code."
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:334
+#: admin/include/class.cf7-form-data-list.php:381
 msgid "To"
 msgstr ""
 
@@ -1389,7 +1590,7 @@ msgstr ""
 msgid "Unread Message"
 msgstr ""
 
-#: admin/settings-panel/includes/templates/sidebar-banner.php:13
+#: admin/settings-panel/includes/templates/sidebar-banner.php:14
 msgid "Validation Message in Popup"
 msgstr ""
 
@@ -1397,8 +1598,8 @@ msgstr ""
 msgid "Valuable Extensions for Contact Form 7."
 msgstr ""
 
-#: admin/include/class.cf7-form-data-list.php:293
-#: admin/include/class.cf7-form-data-list.php:302
+#: admin/include/class.cf7-form-data-list.php:340
+#: admin/include/class.cf7-form-data-list.php:349
 msgid "View"
 msgstr ""
 
@@ -1448,6 +1649,10 @@ msgstr ""
 msgid "Whols Pro"
 msgstr ""
 
+#: admin/include/class.cf7-range-slider.php:126
+msgid "Width (px)"
+msgstr ""
+
 #: admin/include/class.cf7-extensions-recomendation.php:49
 #: admin/template/pro-feature-list.php:61
 msgid "WooLentor"
@@ -1468,6 +1673,12 @@ msgstr ""
 msgid "WordPress Mega Menu Builder for Elementor"
 msgstr ""
 
+#: includes/class.cf7-extensions.php:337
+msgid ""
+"Would you mind doing us a huge favor by providing your feedback on WordPress?"
+" Your support helps us spread the word and greatly boosts our motivation."
+msgstr ""
+
 #: admin/include/class.cf7-extensions-recomendation.php:97
 msgid "WP Plugin Manager"
 msgstr ""
@@ -1483,8 +1694,12 @@ msgid ""
 "your WordPress site to improve the overall site performance."
 msgstr ""
 
-#: admin/settings-panel/includes/classes/Admin/Menu.php:126
+#: admin/settings-panel/includes/classes/Admin/Menu.php:127
 msgid "Yes"
+msgstr ""
+
+#: admin/include/class.notices.php:74
+msgid "You are not authorized."
 msgstr ""
 
 #: admin/settings-panel/includes/classes/Admin/Options_field.php:181
@@ -1508,7 +1723,7 @@ msgid "Zip"
 msgstr ""
 
 #. %1$s: project name
-#: admin/include/class-diagnostic-data.php:510
+#: admin/include/class-diagnostic-data.php:588
 #, php-format
 msgid "🌟 Enhance Your %1$s Experience as a Valued Contributor!"
 msgstr ""
