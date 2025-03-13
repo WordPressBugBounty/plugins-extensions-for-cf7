@@ -177,7 +177,7 @@ class Extensions_Cf7_list extends WP_List_Table
                 if ( sizeof($cf7_form_data) > 2) break;
             }
             $cf7_form_values['form_data'] = "<span class='status ". esc_attr($result->status) ."'>" . esc_html($result->status). "</span>" . implode(".<br>",$cf7_form_data) ;
-            $cf7_form_values['form_title'] = esc_html(get_the_title($cf7_post_id));
+            $cf7_form_values['form_title'] = esc_html(get_the_title($result->form_id));
             $cf7_form_values['date'] = date_format(date_create($result->form_date),"F j, Y");
             $data[] = $cf7_form_values;
 
