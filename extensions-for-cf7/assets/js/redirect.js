@@ -71,12 +71,11 @@
 
 			if(inputs_tag == 'INPUT'){
 				var input_attr_type = $(`[name="${item}"]`).attr('type');
-
-				if(input_attr_type == 'text'){
-					inputs_val = $('input[name="'+item+'"]').val();
-				}else if(input_attr_type == 'radio'){
+				if(input_attr_type == 'radio' || input_attr_type == 'checkbox'){
 					inputs_val = $('input[name="'+item+'"]:checked').val();
-				}
+				} else {
+					inputs_val = $('input[name="'+item+'"]').val();
+				} 
 			}else if(inputs_tag == 'SELECT'){
 				inputs_val = $('select[name="'+item+'"] option').filter(':selected').val();
 			}
