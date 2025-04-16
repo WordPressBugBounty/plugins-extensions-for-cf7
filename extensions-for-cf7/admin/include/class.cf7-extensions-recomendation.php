@@ -17,10 +17,10 @@ class Extensions_Cf7_Recomendation{
     }
 
     function __construct(){
-    	$this->plugin_recommendations();
+        add_action('init', [$this, 'plugin_recommendations']);
     }
 
-     /**
+    /**
      * [plugin_recommendations]
      * @return [void]
      */
@@ -33,7 +33,7 @@ class Extensions_Cf7_Recomendation{
                 'menu_page_slug'    => 'cf7-extensions-recommendations',
                 'priority'          => 222,
                 'assets_url'        => CF7_EXTENTIONS_PL_URL.'admin/assets',
-                'hook_suffix'       => 'ht-cf7-extension_page_cf7-extensions-recommendations'
+                'hook_suffix'       => 'cf7-extensions_page_cf7-extensions-recommendations'
             )
         );
 
