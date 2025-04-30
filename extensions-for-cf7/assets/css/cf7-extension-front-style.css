@@ -65,3 +65,18 @@
 .wpcf7-extcf7-range-slider .ui-widget.ui-widget-content .ui-slider-handle.ui-state-hover {
     background-color: #1D39D7;
 }
+
+
+/* Signature */
+.extcf7_signature_field_input {
+    display: none;
+}
+.extcf7_signature_pad {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.extcf7_signature_pad canvas {
+    max-width: max-content;
+    width: 100%;
+}

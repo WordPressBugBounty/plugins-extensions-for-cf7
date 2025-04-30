@@ -327,6 +327,14 @@ class Options_Field {
                     'label_off' => esc_html__( 'Off', 'cf7-extensions' ),
                     'is_pro' => true,
                 ),
+                array(
+                    'id'  => 'signature',
+                    'name'  => __( 'Signature', 'cf7-extensions' ),
+                    'type'  => 'element',
+                    'default'=>'off',
+                    'label_on' => __( 'On', 'cf7-extensions' ),
+                    'label_off' => __( 'Off', 'cf7-extensions' ),
+                ),
             ),
 
         );

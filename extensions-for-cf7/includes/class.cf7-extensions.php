@@ -122,6 +122,9 @@ class Extensions_Cf7 {
     if( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'on') ) {
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-column.php' );
     }
+    if( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'signature', 'on') ) {
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-signature.php' );
+    }
   
     if(is_admin()){
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-metabox.php' );

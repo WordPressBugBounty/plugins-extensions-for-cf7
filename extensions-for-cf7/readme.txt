@@ -3,7 +3,7 @@ Contributors: htplugins, hasthemes, tarekht, zenaulislam, aslamhasib
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.2.6
+Stable tag: 3.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ Easily save contact form data, apply conditional logic in the fields and redirec
 5. Contact Form 7 Unread emails count badge in the admin menu & Read and Unread status indicator on emails list.
 6. Contact Form 7 Column field, create multiple column layouts.
 7. Contact Form 7 Range Slider Field.
+8. Contact Form 7 Signature Field.
 
 ####[Pro Version](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin)
 1. Trigger a notice, if the form is already submitted. 
@@ -130,6 +131,10 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.2.7 - Date: 30 Apr 2025 =
+* Added: Signature field.
+* Fixed: Conditional field issue when using multiple forms in one page.
 
 = Version: 3.2.6 - Date: 16 Apr 2025 =
 * Added: Compatibility with the latest WordPress version.

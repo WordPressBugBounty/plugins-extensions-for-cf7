@@ -97,11 +97,26 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
 
                         if(false !== strpos($key,'server')) continue;
 
-                        if ( strpos($key, 'file') !== false ){
+                        if ( strpos($key, 'file') !== false || strpos($key, 'signature') !== false ){
                             $key_value = str_replace('your-', '', $key);
                             $key_value = str_replace( array('-','_'), ' ', $key_value);
                             $key_value = ucwords( $key_value );
-                            echo '<tr><th>'.esc_html__('Attachment :','cf7-extensions').'</th> <td><a href="'.esc_url( $cfdb7_dirname.'/'.$data ).'">'.wp_kses_post($data).'</a></td></tr>';
+                            $file_title = str_replace( array('your-','-','_','file'), ' ', $key);
+                            if(is_array($data)){
+                                $attachment_layout = '<tr><th>' . esc_html( ucwords($file_title) ) . ':</th><td>';
+                                foreach ($data as $value) {
+                                    $attachment_layout .= '<a href="' . esc_url( $cfdb7_dirname . '/' . $value ) . '" style="margin-bottom: 10px; display: block; margin-bottom: 8px;" target="_blank">'
+                                        . esc_html( $value ) . '</a>';
+                                }                    
+                                $attachment_layout.='</td></tr><br>';
+                                echo $attachment_layout;
+                            }elseif (strpos($key, 'signature') !== false) {
+                                echo '<tr><th>' . esc_html__( 'Signature :','cf7-extensions-pro') . '</th> <td>
+                                <img src="' . esc_url( $cfdb7_dirname .'/'.$data ) . '"></td></tr>';
+                            }else{
+                                echo '<tr><th>' . esc_html__( 'Attachment :','cf7-extensions-pro') . '</th> <td><a href="' . esc_url( $cfdb7_dirname .'/'.$data ) . '">'
+                                . esc_html( $data ) .'</a></td></tr>';
+                            }
                         }else{
                             if(is_array($data)){
                                 $key_value = str_replace('your-', '', $key);
@@ -110,6 +125,9 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                                 $array_data =  implode(', ',$data);
                                 $array_data =  esc_html( $array_data );
                                 echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br(wp_kses_post($array_data)).'</td></tr>';
+                            }elseif (strpos($key, 'signature') !== false) {
+                                echo '<tr><th>' . esc_html__( 'Signature :','cf7-extensions-pro') . '</th> <td>
+                                <img src="' . esc_url( $cfdb7_dirname .'/'.$data ) . '"></td></tr>';
                             }else{
                                 $key_value = str_replace('your-', '', $key);
                                 $key_value = str_replace( array('-','_'), ' ', $key_value);
