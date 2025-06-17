@@ -65,20 +65,20 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php echo esc_html__('Javascript Action','cf7-extensions');?></th>
+				<th scope="row"><?php echo esc_html__('JavaScript Action','cf7-extensions');?></th>
 				<td class="extcf7-checkbox">
 					<input type="hidden" name="redirect_options[js_action]" value="off">
 					<input type="checkbox" class="checkbox" id="extcf7-js-acction" name="redirect_options[js_action]" value="on" <?php echo $js_action == 'on' ? 'checked' : '';?>>
 					<label for="extcf7-js-acction"></label>
-					<p><?php echo esc_html__('Enable Javascript action to fire a javascript function.','cf7-extensions');?></p>
+					<p><?php echo esc_html__('Enable JavaScript action to fire a JavaScript function.','cf7-extensions');?></p>
 				</td>
 			</tr>
 			<tr class="extcf7-js-code">
-				<th scope="row"><?php echo esc_html__('Javascript Code','cf7-extensions');?></th>
+				<th scope="row"><?php echo esc_html__('JavaScript Code','cf7-extensions');?></th>
 				<td class="extcf7-checkbox">
-					<p ><?php echo esc_html__("Don't need to use <script> tag.",'cf7-extensions');?></p>
-					<textarea rows="10" name="redirect_options[javascript_code]" class="regular-text" placeholder="Paste Your Javascript Code Here"><?php echo esc_html($javascript_code); ?></textarea>
-					<p style="color: #a94442; background: #f2dede;padding: 15px;"><strong><?php echo esc_html__('Warnings!', 'cf7-extensions')?></strong><?php echo esc_html__("This options for developer only.If the javascript action doesn't work after form submission, it means You have a problem with your code.",'cf7-extensions');?></p>
+					<p ><?php echo esc_html__("Don't need to use <script></script> tag.",'cf7-extensions');?></p>
+					<textarea rows="10" name="redirect_options[javascript_code]" class="regular-text" placeholder="Paste Your JavaScript Code Here"><?php echo esc_html($javascript_code); ?></textarea>
+					<p style="color: #a94442; background: #f2dede;padding: 15px;"><strong><?php echo esc_html__('Warnings!', 'cf7-extensions')?></strong><?php echo esc_html__("This options for developer only. If the JavaScript action doesn't work after form submission, it means You have a problem with your code.",'cf7-extensions');?></p>
 				</td>
 			</tr>
 		</tbody>

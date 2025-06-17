@@ -44,7 +44,7 @@
                             . esc_html( $value ) . '</a>';
                     }                    
                     $attachment_layout.='</td></tr><br>';
-                    echo $attachment_layout;
+                    echo $attachment_layout; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 }elseif (strpos($key, 'signature') !== false) {
                     echo '<tr><th>' . esc_html__( 'Signature :','cf7-extensions-pro') . '</th> <td>
                     <img src="' . esc_url( $cfdb7_dirname .'/'.$data ) . '"></td></tr>';

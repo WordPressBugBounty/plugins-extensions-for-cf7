@@ -120,17 +120,17 @@ class Extensions_Cf7_Signature{
         ob_start();
         ?>
         <div class="wpcf7-form-control-wrap extcf7_signature_wrapper <?php echo sanitize_html_class( $tag->name ); ?>">
-			<input hidden type="file" class="extcf7_signature_field_input" <?php echo $atts; ?>>
+			<input hidden type="file" class="extcf7_signature_field_input" <?php echo esc_attr($atts); ?>>
 			<div class="extcf7_signature_pad">
 				<canvas
                     id="<?php echo sanitize_html_class( $tag->name ); ?>"
-                    width="<?php echo $canvas_width; ?>"
-                    height="<?php echo $canvas_height; ?>"
-                    data-bg-color="<?php echo $signature_bg_color; ?>"
-                    data-pen-color="<?php echo $signature_pen_color; ?>"
+                    width="<?php echo esc_attr($canvas_width); ?>"
+                    height="<?php echo esc_attr($canvas_height); ?>"
+                    data-bg-color="<?php echo esc_attr($signature_bg_color); ?>"
+                    data-pen-color="<?php echo esc_attr($signature_pen_color); ?>"
                 ></canvas>
 				<div class="extcf7_signature_control">
-                    <button type="button" class="extcf7_signature_clear_button"><?php _e( 'Clear Signature', 'cf7-extensions' ); ?></button>
+                    <button type="button" class="extcf7_signature_clear_button"><?php esc_html_e( 'Clear Signature', 'cf7-extensions' ); ?></button>
                 </div>
 			</div>
 		</div>

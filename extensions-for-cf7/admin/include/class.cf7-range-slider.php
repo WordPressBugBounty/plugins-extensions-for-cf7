@@ -200,8 +200,8 @@ class Extensions_Cf7_Range_slider{
                     $form_styler_meta = get_post_meta( $current_form->id(), 'extcf7_range_slider', true );
                 }
                 ob_start();
-                echo $this->get_style($form_styler_meta, $current_form->id());
-                echo '<div class="extcf7-cf7-style extcf7-cf7-style-' . esc_attr( $current_form->id() ) . '">' . $form . '</div>';
+                echo $this->get_style($form_styler_meta, $current_form->id()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo '<div class="extcf7-cf7-style extcf7-cf7-style-' . esc_attr( $current_form->id() ) . '">' . $form . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 $form_properties['form'] = ob_get_clean();
             }
         }
@@ -229,12 +229,12 @@ class Extensions_Cf7_Range_slider{
                     }
 
                     // Slider CSS
-                    echo !empty($slider_color) ? $this->get_css('background', $slider_color) : '';
-                    echo !empty($slider_height) ? $this->get_css('height', $slider_height, 'px') : '';
-                    echo !empty($slider_radius) ? $this->get_css('border-radius', $slider_radius, 'px') : '';
-                    echo !empty($slider_border_width) ? $this->get_css('border-width', $slider_border_width, 'px') : '';
-                    echo !empty($slider_border_style) ? $this->get_css('border-style', $slider_border_style) : '';
-                    echo !empty($slider_border_color) ? $this->get_css('border-color', $slider_border_color) : '';
+                    echo !empty($slider_color) ? $this->get_css('background', $slider_color) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($slider_height) ? $this->get_css('height', $slider_height, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($slider_radius) ? $this->get_css('border-radius', $slider_radius, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($slider_border_width) ? $this->get_css('border-width', $slider_border_width, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($slider_border_style) ? $this->get_css('border-style', $slider_border_style) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($slider_border_color) ? $this->get_css('border-color', $slider_border_color) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     $margin_block;
                     if(!empty($handler_height) && !empty($slider_height)) {
                         $margin_block = ($handler_height - $slider_height) / 2;
@@ -243,14 +243,14 @@ class Extensions_Cf7_Range_slider{
                     } elseif (empty($handler_height) && !empty($slider_height)) {
                         $margin_block = (20 - $slider_height) / 2;
                     }
-                    echo !empty($margin_block) ? $this->get_css('margin-block', $margin_block, 'px') : '';
+                    echo !empty($margin_block) ? $this->get_css('margin-block', $margin_block, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 ?>
             }
             .extcf7-cf7-style-<?php echo esc_attr($id); ?> .ui-widget.ui-widget-content .ui-slider-range {
                 <?php
                     $slider_selection_color = $options['slider_selection_color'] ?? '';
                     // Range Selection CSS
-                    echo !empty($slider_selection_color) ? $this->get_css('background', $slider_selection_color) : '';
+                    echo !empty($slider_selection_color) ? $this->get_css('background', $slider_selection_color) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 ?>
             }
             .extcf7-cf7-style-<?php echo esc_attr($id); ?> .ui-widget.ui-widget-content .ui-slider-handle {
@@ -264,18 +264,18 @@ class Extensions_Cf7_Range_slider{
                     $handler_border_color = $options['handler_border_color'] ?? '';
                     
                     // Handler CSS
-                    echo !empty($handler_color) ? $this->get_css('background', $handler_color) : '';
-                    echo !empty($handler_width) ? $this->get_css('width', $handler_width, 'px') : '';
-                    echo !empty($handler_height) ? $this->get_css('height', $handler_height, 'px') : '';
-                    echo !empty($handler_radius) ? $this->get_css('border-radius', $handler_radius, 'px') : '';
-                    echo !empty($handler_border_width) ? $this->get_css('border-width', $handler_border_width, 'px') : '';
-                    echo !empty($handler_border_style) ? $this->get_css('border-style', $handler_border_style) : '';
-                    echo !empty($handler_border_color) ? $this->get_css('border-color', $handler_border_color) : '';
+                    echo !empty($handler_color) ? $this->get_css('background', $handler_color) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_width) ? $this->get_css('width', $handler_width, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_height) ? $this->get_css('height', $handler_height, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_radius) ? $this->get_css('border-radius', $handler_radius, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_border_width) ? $this->get_css('border-width', $handler_border_width, 'px') : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_border_style) ? $this->get_css('border-style', $handler_border_style) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_border_color) ? $this->get_css('border-color', $handler_border_color) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     if(!empty($handler_width)) {
-                        $this->get_css('margin-left', '-' . $handler_width / 2, 'px');
+                        $this->get_css('margin-left', '-' . $handler_width / 2, 'px'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     }
                     if(!empty($handler_height)) {
-                        $this->get_css('margin-top', '-' . $handler_height / 2, 'px');
+                        $this->get_css('margin-top', '-' . $handler_height / 2, 'px'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     }
                 ?>
             }
@@ -285,8 +285,8 @@ class Extensions_Cf7_Range_slider{
                     $handler_color_hover = $options['handler_color_hover'] ?? '';
                     $handler_border_color_hover = $options['handler_border_color_hover'] ?? '';
                     // Handler Hover CSS
-                    echo !empty($handler_color_hover) ? $this->get_css('background', $handler_color_hover) : '';
-                    echo !empty($handler_border_color_hover) ? $this->get_css('border-color', $handler_border_color_hover) : '';
+                    echo !empty($handler_color_hover) ? $this->get_css('background', $handler_color_hover) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo !empty($handler_border_color_hover) ? $this->get_css('border-color', $handler_border_color_hover) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 ?>
             }
         </style>

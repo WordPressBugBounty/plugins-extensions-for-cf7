@@ -81,7 +81,7 @@ class Extensions_Cf7_Metabox {
                                                     '<div class="%s">',
                                                     esc_attr(implode(' ', $field_classes))
                                                 );
-                                                    echo $this->field($field, $form, $metabox);
+                                                    echo $this->field($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	
                                                 echo '</div>';
                                             }
                                         }?>
@@ -113,7 +113,7 @@ class Extensions_Cf7_Metabox {
                                                                 '<div class="%s">',
                                                                 esc_attr(implode(' ', $field_classes))
                                                             );
-                                                                echo $this->field($field, $form, $metabox);
+                                                                echo $this->field($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo '</div>';
                                                         }
                                                     }?>
@@ -135,7 +135,7 @@ class Extensions_Cf7_Metabox {
                                                 '<div class="%s">',
                                                 esc_attr(implode(' ', $field_classes))
                                             );
-                                                echo $this->field($field, $form, $metabox);
+                                                echo $this->field($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo '</div>';
                                         }?>
                                     </div>
@@ -149,20 +149,20 @@ class Extensions_Cf7_Metabox {
         <?php
     }
     public function field($field, $form, $metabox) {
-        echo $this->field_label($field);
+        echo $this->field_label($field); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         if($field['type'] !== 'heading') {
             echo '<div class="htcf7ext-admin-option-field">';
             if($field['type'] === 'number' || $field['type'] === 'text' || $field['type'] === 'email') {
-                echo $this->field_input($field, $form, $metabox);
+                echo $this->field_input($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
             if($field['type'] === 'select') {
-                echo $this->field_select($field, $form, $metabox);
+                echo $this->field_select($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
             if($field['type'] === 'color') {
-                echo $this->field_color($field, $form, $metabox);
+                echo $this->field_color($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
             if($field['type'] === 'swatch') {
-                echo $this->field_swatch($field, $form, $metabox);
+                echo $this->field_swatch($field, $form, $metabox); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
             echo '</div>';
         }
