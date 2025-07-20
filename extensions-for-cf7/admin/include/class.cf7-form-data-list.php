@@ -526,6 +526,7 @@ class Extensions_Cf7_list extends WP_List_Table
 
                     if ( ( strpos($key, 'file') !== false ) &&
                         file_exists($cfdb7_dirname.'/'.$result) ) {
+                        $result = sanitize_file_name($result);
                         wp_delete_file($cfdb7_dirname.'/'.$result);
                     }
 

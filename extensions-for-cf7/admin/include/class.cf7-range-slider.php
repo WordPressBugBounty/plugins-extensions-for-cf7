@@ -324,30 +324,50 @@ class Extensions_Cf7_Range_slider{
         if($tag->has_option('slider_type')) {
             $atts['data-type'] = $tag->get_option( 'slider_type', '', true);
         }
-        $atts['data-min'] = ( $tag->has_option ( 'minimum_value' ) ) ? $tag->get_option ( 'minimum_value', '', true ) : '0';
-        
-        $atts['data-max'] = ( $tag->has_option ( 'maximum_value' ) ) ? $tag->get_option ( 'maximum_value', '', true ) : '100';
+        $minValue = $tag->has_option ( 'minimum_value' ) ? $tag->get_option ( 'minimum_value', '', true ) : '0';
+        $atts['data-min'] = $minValue;
 
-        $atts['data-default'] = ( $tag->has_option ( 'default_value' ) ) ? $tag->get_option ( 'default_value', '', true ) : '50';
+        $maxValue = $tag->has_option ( 'maximum_value' ) ? $tag->get_option ( 'maximum_value', '', true ) : '100';
+        $atts['data-max'] = $maxValue;
+
+        $defaultValue = $tag->has_option ( 'default_value' ) ? $tag->get_option ( 'default_value', '', true ) : '50';
+        $atts['data-default'] = $defaultValue;
 
         if($tag->has_option('range_step')) {
             $atts['data-step'] = $tag->get_option( 'range_step', '', true);
         }
+
+        $valuePrefix = $tag->has_option ( 'value_prefix' ) ? $tag->get_option ( 'value_prefix', '', true ) : '';
+        $atts['data-prefix'] = $valuePrefix;
+        $valueSuffix = $tag->has_option ( 'value_suffix' ) ? $tag->get_option ( 'value_suffix', '', true ) : '';
+        $atts['data-suffix'] = $valueSuffix;
 
         $valueContainer = sprintf(
             '<div class="wpcf7-extcf7-range-slider-amount" %s ></div>',
             !empty($atts['data-show']) && $atts['data-show'] === 'on' ? '' : 'style="display:none;"'
         );
 
+        $showMinMaxValues = $tag->has_option ( 'show_min_max_values' ) ? $tag->get_option ( 'show_min_max_values', '', true ) : 'off';
+
         $atts = wpcf7_format_atts( $atts );
+        $rangeMinMaxValueContainer = sprintf(
+            '<div class="wpcf7-extcf7-slider-range-container">
+                <span class="wpcf7-extcf7-slider-range-min">%s</span>
+                <span class="wpcf7-extcf7-slider-range-max">%s</span>
+            </div>',
+            "{$valuePrefix}{$minValue}{$valueSuffix}",
+            "{$valuePrefix}{$maxValue}{$valueSuffix}",
+        );
         return sprintf('<div id="%1$s" class="wpcf7-form-control-wrap wpcf7-extcf7-range-slider">
             %2$s
             <div class="wpcf7-extcf7-range-slider-wrapper"><input type="hidden" %3$s /></div>
             %4$s
+            %5$s
         </div>', 
         esc_attr( $tag->name ),
         $valueContainer,
         $atts,
+        $showMinMaxValues === 'on' ? wp_kses_post($rangeMinMaxValueContainer) : '',
         wp_kses_post($validation_error) );
     }
 
@@ -364,8 +384,8 @@ class Extensions_Cf7_Range_slider{
             ['version' => 2]
         );
     }
-
-        public function range_slider_layout($contact_form, $args = '') {
+    
+    public function range_slider_layout($contact_form, $args = '') {
         $args = wp_parse_args( $args, [] );
         $tgg = new WPCF7_TagGeneratorGenerator( $args['content'] );
         ?>
@@ -389,6 +409,14 @@ class Extensions_Cf7_Range_slider{
                 <legend><?php echo esc_html__( 'Show Values', 'cf7-extensions' ); ?></legend>
                 <label><input type="radio" name="show_value" data-tag-part="option" data-tag-option="show_value:" value="on" /> <?php echo esc_html__( 'On', 'cf7-extensions' ); ?></label>
                 <label><input type="radio" name="show_value" data-tag-part="option" data-tag-option="show_value:" value="off" /> <?php echo esc_html__( 'Off', 'cf7-extensions' ); ?></label>
+                <p style="margin: 0;"><?php echo esc_html__( 'Enable this option to show the current value of the slider.','cf7-extensions' ) ?></p>
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Show Min Max Values', 'cf7-extensions' ); ?></legend>
+                <label><input type="radio" name="show_min_max_values" data-tag-part="option" data-tag-option="show_min_max_values:" value="on" /> <?php echo esc_html__( 'On', 'cf7-extensions' ); ?></label>
+                <label><input type="radio" name="show_min_max_values" data-tag-part="option" data-tag-option="show_min_max_values:" value="off" /> <?php echo esc_html__( 'Off', 'cf7-extensions' ); ?></label>
+                <p style="margin: 0;"><?php echo esc_html__( 'Enable this option to show the minimum and maximum values of the slider at the bottom.','cf7-extensions' ) ?></p>
             </fieldset>
 
             <fieldset>
@@ -408,6 +436,16 @@ class Extensions_Cf7_Range_slider{
             </fieldset>
 
             <fieldset>
+                <legend><?php echo esc_html__( 'Value Prefix', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="value_prefix" data-tag-part="option" data-tag-option="value_prefix:" class="value-prefix oneline option" placeholder="$" />
+            </fieldset>
+
+            <fieldset>
+                <legend><?php echo esc_html__( 'Value Suffix', 'cf7-extensions' ); ?></legend>
+                <input type="text" name="value_suffix" data-tag-part="option" data-tag-option="value_suffix:" class="value-suffix oneline option" placeholder="%" />
+            </fieldset>
+
+            <fieldset>
                 <legend><?php echo esc_html__( 'Default Value', 'cf7-extensions' ); ?></legend>
                 <input type="text" name="default_value" data-tag-part="option" data-tag-option="default_value:" class="default-value oneline option" placeholder="50" />
                 <p><?php echo esc_html__( 'For the "Double Handle" slider type, you can set two values separated by a comma ("-"). If you only set one value, the other will default to the maximum value. Example: 20-70','cf7-extensions' ) ?></p>
@@ -424,7 +462,7 @@ class Extensions_Cf7_Range_slider{
         </footer>
         <?php
     }
-
+    
     public function range_slider_layout_old($contact_form, $args = '') {
         $args = wp_parse_args( $args, [] );
         $type = 'extcf7_range_slider';
@@ -450,6 +488,15 @@ class Extensions_Cf7_Range_slider{
                             <td>
                                 <label for="show_value_on"><input type="radio" name="show_value" class="option" id="show_value_on" value="on" />On</label>
                                 <label for="show_value_off"><input type="radio" name="show_value" class="option" id="show_value_off" value="off" />Off</label>
+                                <p style="margin: 0;"><?php echo esc_html__( 'Enable this option to show the current value of the slider.','cf7-extensions' ) ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label><?php echo esc_html__( 'Show Min Max Values', 'cf7-extensions' ); ?></label></th>
+                            <td>
+                                <label for="show_min_max_values_on"><input type="radio" name="show_min_max_values" class="option" id="show_min_max_values_on" value="on" />On</label>
+                                <label for="show_min_max_values_off"><input type="radio" name="show_min_max_values" class="option" id="show_min_max_values_off" value="off" />Off</label>
+                                <p style="margin: 0;"><?php echo esc_html__( 'Enable this option to show the minimum and maximum values of the slider at the bottom.','cf7-extensions' ) ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -469,6 +516,18 @@ class Extensions_Cf7_Range_slider{
                             <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-maximum-value' ); ?>"><?php echo esc_html__( 'Maximum Value', 'cf7-extensions' ); ?></label></th>
                             <td>
                                 <input type="text" name="maximum_value" class="maximum-value oneline option" placeholder="100" id="<?php echo esc_attr( $args['content'] . '-maximum-value' ); ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-value-prefix' ); ?>"><?php echo esc_html__( 'Value Prefix', 'cf7-extensions' ); ?></label></th>
+                            <td>
+                                <input type="text" name="value_prefix" class="value-prefix oneline option" placeholder="$" id="<?php echo esc_attr( $args['content'] . '-value-prefix' ); ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-value-suffix' ); ?>"><?php echo esc_html__( 'Value Suffix', 'cf7-extensions' ); ?></label></th>
+                            <td>
+                                <input type="text" name="value_suffix" class="value-suffix oneline option" placeholder="%" id="<?php echo esc_attr( $args['content'] . '-value-suffix' ); ?>" />
                             </td>
                         </tr>
                         <tr>

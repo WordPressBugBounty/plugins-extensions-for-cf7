@@ -3,7 +3,7 @@ Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.2.8
+Stable tag: 3.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,10 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.2.9 - Date: 20 Jul 2025 =
+* Added: Option to configure Prefix, Suffix, and Min/Max value visibility for the Range Slider field.
+* Fixed: File name sanitize issue for entry delete action.
 
 = Version: 3.2.8 - Date: 17 Jun 2025 =
 * Fixed: Escaping issue in multiple areas.

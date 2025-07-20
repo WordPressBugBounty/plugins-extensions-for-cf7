@@ -66,6 +66,17 @@
     background-color: #1D39D7;
 }
 
+.wpcf7-extcf7-slider-range-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.wpcf7-extcf7-slider-range-container span {
+    font-weight: 600;
+    font-size: 15px;
+}
+
 
 /* Signature */
 .extcf7_signature_field_input {
