@@ -127,7 +127,9 @@ class Extensions_Cf7 {
     }
   
     if(is_admin()){
-      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-metabox.php' );
+      add_action('init', function(){
+        require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-metabox.php' );
+      });
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.download-csv.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.download-excel.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-post-list.php' );

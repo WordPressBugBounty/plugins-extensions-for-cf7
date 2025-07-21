@@ -106,7 +106,7 @@ class Menu {
                 'modal' => [
                     'title' => esc_html__( 'BUY PRO', 'cf7-extensions' ),
                     'buynow' => esc_html__( 'Buy Now', 'cf7-extensions' ),
-                    'desc' => esc_html__( 'Our free version is great, but it doesn\'t have all our advanced features. The best way to unlock all of the features in our plugin is by purchasing the pro version.', 'cf7-extensions' )
+                    'desc' => esc_html__( "While our free version offers great functionality, it doesn’t include all the advanced features. To unlock the full potential of our plugin, we recommend upgrading to the Pro version.", 'cf7-extensions' )
                 ],
                 'saveButton' => [
                     'text'   => esc_html__( 'Save Settings', 'cf7-extensions' ),
