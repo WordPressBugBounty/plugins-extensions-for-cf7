@@ -21,12 +21,13 @@
         if (step) { params.step = +step; }
 
         const amountContainer = $(this).closest('.wpcf7-extcf7-range-slider').find('.wpcf7-extcf7-range-slider-amount');
-        if(amountContainer && params.values) {
+        
+        if(amountContainer && (params.values !== undefined && params.values !== null && params.values !== '')) {
             const minValue = params.values[0];
             const maxValue = params.values[1];
             amountContainer.html(prefix + minValue + suffix + ' - ' + prefix + maxValue + suffix)
         }
-        if(amountContainer && params.value) { amountContainer.html(prefix + params.value + suffix) }
+        if(amountContainer && (params.value !== undefined && params.value !== null && params.value !== '')) { amountContainer.html(prefix + params.value + suffix) }
         
         $( this.parentElement ).slider({
             ...params,
