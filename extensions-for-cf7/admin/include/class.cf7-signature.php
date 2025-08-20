@@ -219,7 +219,7 @@ class Extensions_Cf7_Signature{
 
     public function validation_filter($result, $tag){
         $name = $tag->name;
-        $value = ( isset( $_POST[ $name ] ) && !empty( $_POST[ $name ] ) ) ? sanitize_text_field($_POST[ $name ]) : null ; //phpcs:ignore WordPress.Security.NonceVerification.Missing
+        $value = ( isset( $_FILES[ $name ] ) && !empty( $_FILES[ $name ]['name'] ) ) ? $_FILES[ $name ] : null ;  //phpcs:ignore WordPress.Security.NonceVerification.Missing
         if( empty( $value ) && $tag->is_required() ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
             return $result;

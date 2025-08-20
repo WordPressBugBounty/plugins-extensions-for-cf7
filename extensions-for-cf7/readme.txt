@@ -3,7 +3,7 @@ Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,9 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.3.2 - Date: 20 Aug 2025 =
+* Fixed: Issue with signature field required validation.
 
 = Version: 3.3.1 - Date: 28 Jul 2025 =
 * Fixed: Issue with range slider default value display if value is set to 0.
