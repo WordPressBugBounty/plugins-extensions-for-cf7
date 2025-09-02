@@ -104,9 +104,9 @@ class Extensions_Cf7_Signature{
         if ( $tag->is_required() ) {
             $atts['aria-required'] = 'true';
         }
-        $atts['name'] = $tag->name;
-        $atts['class'] = $tag->get_class_option( $class );
-        $atts['aria-invalid'] = $validation_error ? 'true' : 'false';
+        $atts['name'] = esc_attr($tag->name);
+        $atts['class'] = esc_attr($tag->get_class_option( $class ));
+        $atts['aria-invalid'] = esc_attr($validation_error ? 'true' : 'false');
 
         $atts = wpcf7_format_atts( $atts );
 
@@ -120,7 +120,7 @@ class Extensions_Cf7_Signature{
         ob_start();
         ?>
         <div class="wpcf7-form-control-wrap extcf7_signature_wrapper <?php echo sanitize_html_class( $tag->name ); ?>">
-			<input hidden type="file" class="extcf7_signature_field_input" <?php echo esc_attr($atts); ?>>
+			<input hidden type="file" class="extcf7_signature_field_input" <?php echo $atts; ?>> <!-- phpcs:ignore -->
 			<div class="extcf7_signature_pad">
 				<canvas
                     id="<?php echo sanitize_html_class( $tag->name ); ?>"
