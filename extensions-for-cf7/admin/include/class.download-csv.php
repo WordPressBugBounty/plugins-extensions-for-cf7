@@ -46,7 +46,8 @@ class Extensions_Cf7_Csv
         }
 
         $csv_heading_row    = reset( $csv_heading_row );
-        $csv_heading_row    = unserialize( $csv_heading_row->form_value );
+        // Use safe decoder that handles both JSON and legacy serialized data
+        $csv_heading_row    = extcf7_decode_form_data( $csv_heading_row->form_value );
         $csv_heading_key    = array_keys( $csv_heading_row );
 
 
@@ -65,6 +66,12 @@ class Extensions_Cf7_Csv
 
         $csv_df = fopen($filename, 'w');
 
+        // Check if file was created successfully
+        if ( false === $csv_df ) {
+            error_log( 'Extensions for CF7: Failed to create CSV file for export' );
+            wp_die( esc_html__( 'Failed to create export file. Please check server permissions.', 'cf7-extensions' ) );
+        }
+
         fputcsv( $csv_df, $csv_heading );
 
         for( $k = 0; $k <= $total_query_n; $k++ ){
@@ -81,10 +88,11 @@ class Extensions_Cf7_Csv
             $csv_data  = array();
 
             foreach ($results as $result) :
-                
+
                 $csv_data['form_date']  = $result->form_date;
                 $csv_data['id']    		= $result->form_id;
-                $csv_result_tmp         = unserialize( $result->form_value );
+                // Use safe decoder that handles both JSON and legacy serialized data
+                $csv_result_tmp         = extcf7_decode_form_data( $result->form_value );
                 $upload_dir             = wp_upload_dir();
                 $extcf7_dir_url         = $upload_dir['baseurl'].'/extcf7_uploads';
 

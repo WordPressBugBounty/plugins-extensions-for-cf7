@@ -42,23 +42,31 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                 }
             }
 
-            $delete_row = $wpdb->get_results( 
+            $delete_row = $wpdb->get_results(
                 $wpdb->prepare(
                     "SELECT * FROM $table_name WHERE id = %d LIMIT 1",
                     $mail_form_id
                 ),
-                OBJECT 
+                OBJECT
             );
-            $del_row_value  = $delete_row[0]->form_value;
-            $del_row_values = unserialize($del_row_value);
 
-            foreach ($del_row_values as $key => $result) {
+            if ( ! empty( $delete_row ) ) {
+                $del_row_value  = $delete_row[0]->form_value;
+                // Use safe decoder that handles both JSON and legacy serialized data
+                $del_row_values = extcf7_decode_form_data( $del_row_value );
+                $cf7_upload_basedir = $cf7_upload_dir['basedir'] . '/extcf7_uploads';
 
-                if ( ( strpos($key, 'file') !== false ) &&
-                    file_exists($cfdb7_dirname.'/'.$result) ) {
-                    wp_delete_file($cfdb7_dirname.'/'.$result);
+                foreach ( $del_row_values as $key => $result ) {
+                    // Check for file or signature fields with secure basename
+                    if ( ( strpos( $key, 'file' ) !== false || strpos( $key, 'signature' ) !== false ) &&
+                        ! empty( $result ) &&
+                        file_exists( $cf7_upload_basedir . '/' . basename( $result ) ) ) {
+                        wp_delete_file( $cf7_upload_basedir . '/' . sanitize_file_name( basename( $result ) ) );
+                    }
                 }
 
+                // Invalidate unread count cache
+                extcf7_invalidate_unread_cache();
             }
 			$wpdb->delete("{$table_name}",['id' => $mail_form_id]);
 			$url = admin_url("?page=contat-form-list&cf7_id=").$current_form_id;
@@ -92,7 +100,9 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                         <th><?php echo esc_html('Date :') ?></th>
                         <td><?php echo esc_html(date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a")); ?></td>
                     </tr>
-                    <?php $form_data  = unserialize( $mail_form_data[0]->form_value );
+                    <?php
+                    // Use safe decoder that handles both JSON and legacy serialized data
+                    $form_data = extcf7_decode_form_data( $mail_form_data[0]->form_value );
                     foreach ($form_data as $key => $data):
 
                         if(false !== strpos($key,'server')) continue;
@@ -168,7 +178,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                                         }else{
                                            $ip_address = esc_html( $form_data['server_remote_addr'] );  
                                         } 
-                                        echo $ip_address ? esc_html($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
+                                        echo $ip_address ? wp_kses_post($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
                                     ?></td>
                                 </tr>
                             <?php endif; ?>

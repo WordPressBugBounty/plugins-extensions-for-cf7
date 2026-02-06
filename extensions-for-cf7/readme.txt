@@ -2,8 +2,8 @@
 Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
-Tested up to: 6.8
-Stable tag: 3.3.3
+Tested up to: 6.9
+Stable tag: 3.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,23 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.4.1 - Date: 21 Jan 2026 =
+* Improved: Added capability check for form data viewing.
+
+= Version: 3.4.0 - Date: 17 Dec 2025 =
+* Improved: Modernized form data storage to use JSON encoding for better reliability.
+* Improved: Added safe data decoder with backward compatibility for existing data.
+* Performance: Fixed N+1 database query issue in bulk delete operations.
+* Performance: Added transient caching for unread submissions count.
+* Improved: Added error handling for CSV and Excel export file operations.
+* Improved: Enhanced file path security with basename sanitization.
+
+= Version: 3.3.5 - Date: 13 Nov 2025 =
+* Fixed: Minor bug fix.
+
+= Version: 3.3.4 - Date: 23 Oct 2025 =
+* Improved: Minor UI update and optimizations.
 
 = Version: 3.3.3 - Date: 02 Sep 2025 =
 * Fixed: Resolved an issue where signature field data was not being stored properly.

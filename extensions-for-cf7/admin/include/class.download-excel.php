@@ -49,13 +49,20 @@ class Extensions_Cf7_Excel
         }
 
         $heading_row = reset($heading_row);
-        $form_values = unserialize($heading_row->form_value);
+        // Use safe decoder that handles both JSON and legacy serialized data
+        $form_values = extcf7_decode_form_data($heading_row->form_value);
         $heading_keys = array_keys($form_values);
 
         // Setup Excel Writer
         $writer = WriterEntityFactory::createXLSXWriter();
         $fileName = "extcf7-" . date("Y-m-d") . ".xlsx";
-        $writer->openToFile($fileName);
+
+        try {
+            $writer->openToFile($fileName);
+        } catch ( \Exception $e ) {
+            error_log( 'Extensions for CF7: Failed to create Excel file for export - ' . $e->getMessage() );
+            wp_die( esc_html__( 'Failed to create export file. Please check server permissions.', 'cf7-extensions' ) );
+        }
 
         // Prepare Headers
         $headers = [esc_html__('Date', 'cf7-extensions'), esc_html__('Form Id', 'cf7-extensions')];
@@ -95,7 +102,8 @@ class Extensions_Cf7_Excel
                     $result->form_id
                 ];
 
-                $form_values = unserialize($result->form_value);
+                // Use safe decoder that handles both JSON and legacy serialized data
+                $form_values = extcf7_decode_form_data($result->form_value);
 
                 foreach ($heading_keys as $key) {
                     $value = isset($form_values[$key]) ? $form_values[$key] : '';
@@ -117,6 +125,12 @@ class Extensions_Cf7_Excel
         }
 
         $writer->close();
+
+        // Verify file was created before sending
+        if ( ! file_exists( $fileName ) ) {
+            error_log( 'Extensions for CF7: Excel file was not created successfully' );
+            wp_die( esc_html__( 'Failed to create export file.', 'cf7-extensions' ) );
+        }
 
         header('Content-Description: File Transfer');
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

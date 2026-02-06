@@ -44,7 +44,7 @@ class Extensions_Cf7 {
     require_once ( CF7_EXTENTIONS_PL_PATH . 'includes/class-ajax-actions.php' );
     require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/settings-panel/settings-panel.php' );
 
-    add_action('admin_init', [$this, 'show_diagnostic_notice']);
+    //add_action('admin_init', [$this, 'show_diagnostic_notice']); // its not working when click action
     add_action('admin_init', [$this, 'show_rating_notice']);
     add_action('admin_init', [$this, 'show_promo_notice']);
 	}
@@ -366,11 +366,6 @@ class Extensions_Cf7 {
       $noticeManager = Extensions_Cf7_Notice_Manager::instance();
       $notices = $noticeManager->get_notices_info();
       if(!empty($notices)) {
-          $notices = array_map(function($notice) {
-              $notice["display_after"] = false;
-              $notice["expire_time"] = WEEK_IN_SECONDS;
-              return $notice;
-          }, $notices);
           foreach ($notices as $notice) {
               if(empty($notice['disable'])) {
                 Extensions_Cf7_Notice::set_notice($notice);

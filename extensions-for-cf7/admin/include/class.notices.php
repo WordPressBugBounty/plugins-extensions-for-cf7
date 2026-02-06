@@ -113,9 +113,41 @@ if ( ! class_exists( 'Extensions_Cf7_Notice' ) ){
                 width: 100%;
                 box-sizing: border-box;
             }
+            
             .extcf7-admin-notice.promo-banner {
                 position: relative;
-                padding: 8px;
+                padding: 12px !important;
+                border: 1px solid #c3c4c7;
+            }
+            .extcf7-admin-notice.promo-banner a {
+                display: flex;
+            }
+            .extcf7-admin-notice.promo-banner img {
+                width: 100%;
+            }
+            .extcf7-admin-notice.promo-banner *:empty:not(img) {
+                display: none;
+            }
+            .extcf7-admin-notice.promo-banner .notice-dismiss {
+                top: -10px;
+                right: -10px;
+                background-color: white;
+                padding: 2px;
+                border-radius: 50px;
+                border: 1px solid #ddd;
+            }
+
+            #extcf7-notice-id-halloween {
+                padding: 12px;
+                border-left-width: 1px;
+            }
+            #extcf7-notice-id-halloween .notice-dismiss {
+                top: -10px;
+                right: -10px;
+                background-color: white;
+                padding: 2px;
+                border-radius: 50px;
+                border: 1px solid #ddd;
             }
             .extcf7-admin-notice.sidebar-notice {
                 margin: 0;

@@ -27,7 +27,9 @@
             <th><?php echo esc_html__('Date :','cf7-extensions'); ?></th>
             <td><?php echo esc_html(date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a")); ?></td>
         </tr>
-        <?php $form_data  = unserialize( $mail_form_data[0]->form_value );
+        <?php
+        // Use safe decoder that handles both JSON and legacy serialized data
+        $form_data = extcf7_decode_form_data( $mail_form_data[0]->form_value );
         foreach ($form_data as $key => $data):
 
             if(false !== strpos($key,'server')) continue;
@@ -99,7 +101,7 @@
                             }else{
                                 $ip_address = esc_html( $form_data['server_remote_addr'] );  
                             } 
-                            echo $ip_address ? esc_html($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
+                            echo $ip_address ? wp_kses_post($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
                         ?></td>
                     </tr>
                 <?php endif; ?>

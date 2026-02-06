@@ -161,7 +161,8 @@ class Extensions_Cf7_list extends WP_List_Table
 
         foreach ( $results as $result ) {
 
-            $cf7_form_value        = unserialize( $result->form_value );
+            // Use safe decoder that handles both JSON and legacy serialized data
+            $cf7_form_value        = extcf7_decode_form_data( $result->form_value );
             $cf7_form_values['id'] = $result->id;
             $cf7_form_data = [];
 
@@ -304,11 +305,15 @@ class Extensions_Cf7_list extends WP_List_Table
             foreach ($db_format as $value) {
                 $data = [
                     'form_id' => $current_form_id,
-                    'form_value' => serialize($value['form_value']),
+                    // Use JSON encoding instead of serialize for security (since v3.4.0)
+                    'form_value' => extcf7_encode_form_data($value['form_value']),
                     'form_date' => $value['form_date'],
                 ];
                 $wpdb->insert($table_name, $data);
             }
+
+            // Invalidate unread count cache
+            extcf7_invalidate_unread_cache();
 
             ?>
             <div class="notice notice-success is-dismissible">
@@ -514,58 +519,79 @@ class Extensions_Cf7_list extends WP_List_Table
         $cf7_em_id = !empty($_GET['cf7em_id']) ? sanitize_text_field($_GET['cf7em_id']) : '';
 
         if( 'delete' === $action ) {
-            foreach ($form_ids as $form_id):
-                $form_id         = $form_id;
-                $delete_row      = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE id = %d LIMIT 1", $form_id ), OBJECT );
-                $del_row_value   = $delete_row[0]->form_value;
-                $del_row_values  = unserialize($del_row_value);
-                $cf7_upload_dir  = wp_upload_dir();
-                $cfdb7_dirname   = $cf7_upload_dir['basedir'].'/extcf7_uploads';
+            if ( ! empty( $form_ids ) ) {
+                // Batch fetch all rows to delete (fixes N+1 query issue)
+                $placeholders = implode( ',', array_fill( 0, count( $form_ids ), '%d' ) );
+                $delete_rows = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT * FROM $table_name WHERE id IN ($placeholders)",
+                        ...$form_ids
+                    ),
+                    OBJECT
+                );
 
-                foreach ($del_row_values as $key => $result) {
+                $cf7_upload_dir = wp_upload_dir();
+                $cfdb7_dirname  = $cf7_upload_dir['basedir'] . '/extcf7_uploads';
 
-                    if ( ( strpos($key, 'file') !== false ) &&
-                        file_exists($cfdb7_dirname.'/'.$result) ) {
-                        $result = sanitize_file_name($result);
-                        wp_delete_file($cfdb7_dirname.'/'.$result);
+                // Process files for all rows
+                foreach ( $delete_rows as $delete_row ) {
+                    // Use safe decoder that handles both JSON and legacy serialized data
+                    $del_row_values = extcf7_decode_form_data( $delete_row->form_value );
+
+                    foreach ( $del_row_values as $key => $result ) {
+                        // Check for file or signature fields
+                        if ( ( strpos( $key, 'file' ) !== false || strpos( $key, 'signature' ) !== false ) &&
+                            ! empty( $result ) &&
+                            file_exists( $cfdb7_dirname . '/' . basename( $result ) ) ) {
+                            $result = sanitize_file_name( basename( $result ) );
+                            wp_delete_file( $cfdb7_dirname . '/' . $result );
+                        }
                     }
-
                 }
 
-                $wpdb->delete(
-                    $table_name ,
-                    array( 'id' => $form_id ),
-                    array( '%d' )
+                // Batch delete all rows
+                $wpdb->query(
+                    $wpdb->prepare(
+                        "DELETE FROM $table_name WHERE id IN ($placeholders)",
+                        ...$form_ids
+                    )
                 );
-            endforeach;
 
-            if( $cf7_em_id && !$form_ids ){
-                $where = array('ID' => $cf7_em_id);
+                // Invalidate unread count cache
+                extcf7_invalidate_unread_cache();
+            }
 
-                $wpdb->delete($table_name, $where);
+            if ( $cf7_em_id && empty( $form_ids ) ) {
+                $where = array( 'ID' => absint( $cf7_em_id ) );
+                $wpdb->delete( $table_name, $where );
+
+                // Invalidate unread count cache
+                extcf7_invalidate_unread_cache();
             }
         }
 
-        if( 'mark_as_read' === $action ) {
+        if( 'mark_as_read' === $action && ! empty( $form_ids ) ) {
             foreach ($form_ids as $form_id) {
-                $result = $wpdb->query( $wpdb->prepare(
+                $wpdb->query( $wpdb->prepare(
                     "UPDATE $table_name SET status = %s WHERE id = %d",
                     'read',
                     $form_id
                 ));
             }
-            htcf7ext_update_menu_badge();
+            // Invalidate cache and update menu badge
+            extcf7_invalidate_unread_cache();
         }
 
-        if( 'mark_as_unread' === $action ) {
+        if( 'mark_as_unread' === $action && ! empty( $form_ids ) ) {
             foreach ($form_ids as $form_id) {
-                $result = $wpdb->query( $wpdb->prepare(
+                $wpdb->query( $wpdb->prepare(
                     "UPDATE $table_name SET status = %s WHERE id = %d",
                     'unread',
                     $form_id
                 ));
             }
-            htcf7ext_update_menu_badge();
+            // Invalidate cache and update menu badge
+            extcf7_invalidate_unread_cache();
         }
     }
 

@@ -38,7 +38,10 @@ class Extensions_Cf7_Store_Data
             foreach ($cf7_files as $file_key => $file) {
                 $file = is_array( $file ) ? reset( $file ) : $file;
                 if( empty($file) ) continue;
-                copy($file, $cf7_file_dirname.'/'.$current_time.'-'.$file_key.'-'.basename($file));
+                $destination = $cf7_file_dirname . '/' . $current_time . '-' . $file_key . '-' . basename($file);
+                if ( ! @copy($file, $destination) ) {
+                    error_log( 'Extensions for CF7: Failed to copy uploaded file to ' . $destination );
+                }
             }
 
             foreach ($cf7_data  as $key => $value){
@@ -69,7 +72,8 @@ class Extensions_Cf7_Store_Data
             $posted_fields_value['server_remote_addr']  = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 
             $cf7_post_id = $extcf7_info->id();
-            $cf7_value   = serialize( $posted_fields_value );
+            // Use JSON encoding instead of serialize for security (since v3.4.0)
+            $cf7_value   = extcf7_encode_form_data( $posted_fields_value );
             $cf7_date    = current_time('Y-m-d H:i:s');
 
             $data  = [
@@ -81,6 +85,9 @@ class Extensions_Cf7_Store_Data
             $table_name = $wpdb->prefix . 'extcf7_db';
 
             $wpdb->insert( $table_name, $data ); //phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+
+            // Invalidate unread count cache
+            extcf7_invalidate_unread_cache();
         }
     }
 }

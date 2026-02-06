@@ -34,6 +34,12 @@ class Ajax_Actions {
     public function htcf7ext_view_formdata_cb(){
         // Verify nonce
         check_ajax_referer( 'htcf7ext_nonce', 'nonce' );
+
+        // Verify user capability
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array( 'message' => __( 'Unauthorized access.', 'cf7-extensions' ) ), 403 );
+        }
+
         $html = '';
 
         ob_start();
