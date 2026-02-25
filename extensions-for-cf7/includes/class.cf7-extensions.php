@@ -313,6 +313,9 @@ class Extensions_Cf7 {
   
   function show_diagnostic_notice() {
       $notice_instance = \Extensions_Cf7_Diagnostic_Data::get_instance();
+      if ( ! $notice_instance->should_show_notice() ) {
+          return;
+      }
       ob_start();
       $notice_instance->show_notices();
       $message = ob_get_clean();
