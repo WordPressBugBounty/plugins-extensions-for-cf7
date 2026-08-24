@@ -26,10 +26,11 @@ class Extensions_Cf7_Post_List implements Extensions_Cf7_Form_Datalist_Render
 
         $the_query = new WP_Query( $args );
 
-        while ( $the_query->have_posts() ){ 
-            $the_query->the_post();
-            $cf7_post_id = get_the_id();
-            $title = get_the_title();
+        // Loop over the results directly instead of the_post(), so the global
+        // $post of whatever screen is being rendered is left untouched.
+        foreach ( $the_query->posts as $cf7_post ) {
+            $cf7_post_id = $cf7_post->ID;
+            $title = get_the_title( $cf7_post );
             $table_name = $wpdb->prefix . 'extcf7_db';
             $total_email = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = %d ", $cf7_post_id));//phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             $link  = "<a href=admin.php?page=contat-form-list&cf7_id=$cf7_post_id>%s</a>";

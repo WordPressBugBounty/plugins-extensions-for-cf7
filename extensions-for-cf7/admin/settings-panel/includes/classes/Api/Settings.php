@@ -35,10 +35,26 @@ class Settings extends WP_REST_Controller {
         $this->namespace = 'htcf7extopt/v1';
         $this->rest_base = 'settings';
         $this->errors    = new \WP_Error();
-        $this->settings  = \HTCf7Ext\Admin\Options_Field::instance()->get_registered_settings();
 
         add_filter( $this->slug . '_settings_sanitize', [ $this, 'sanitize_settings' ], 3, 10 );
 
+    }
+
+    /**
+     * Registered settings, built on first use.
+     *
+     * Building them renders the forms/submissions tables, so it must not happen
+     * while merely registering routes — rest_api_init fires on every REST
+     * request, including the ones wp-admin preloads while rendering an editor.
+     *
+     * @return array
+     */
+    protected function get_settings() {
+        if ( null === $this->settings ) {
+            $this->settings = \HTCf7Ext\Admin\Options_Field::instance()->get_registered_settings();
+        }
+
+        return $this->settings;
     }
 
     /**
@@ -147,7 +163,8 @@ class Settings extends WP_REST_Controller {
             return;
         }
 
-        $get_settings = $this->settings[$section];
+        $registered_settings = $this->get_settings();
+        $get_settings = isset( $registered_settings[$section] ) ? $registered_settings[$section] : [];
         $data_to_save = [];
 
         if ( is_array( $get_settings ) && ! empty( $get_settings ) ) {
