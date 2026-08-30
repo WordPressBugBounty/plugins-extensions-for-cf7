@@ -105,6 +105,8 @@
                         $message.removeClass( 'updating-message' );
                     }
 
+                } ).fail( function() {
+                    $message.removeClass( 'updating-message' );
                 });
 
             }, 1200 );
@@ -140,7 +142,11 @@
                         .attr( 'disabled', 'disabled' )
                         .addClass( 'disabled' )
                         .text( htrp_params.buttontxt.active );
+                } else {
+                    $button.removeClass( 'updating-message' );
                 }
+            }).fail( function() {
+                $button.removeClass( 'updating-message' );
             });
 
         },

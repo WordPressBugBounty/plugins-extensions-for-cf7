@@ -143,6 +143,8 @@ class Extensions_Cf7 {
       }
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/Recommended_Plugins.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-extensions-recomendation.php' );
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-dashboard-widget-api.php' );
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-dashboard-widget.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-diagnostic-data.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class-notice-manager.php' );
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.notices.php' );

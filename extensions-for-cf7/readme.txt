@@ -2,8 +2,8 @@
 Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
-Tested up to: 7.0
-Stable tag: 3.4.4
+Tested up to: 7.1
+Stable tag: 3.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,11 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.4.5 - Date: 30 Aug 2026 =
+* Fixed: Recommended Plugins page grid collapsed to a single column on newer WordPress versions.
+* Fixed: A few minor issues.
+* Tested: Compatibility with the latest version of WordPress.
 
 = Version: 3.4.4 - Date: 24 Aug 2026 =
 * Fixed: Post/page edit screen could show a Contact Form 7 form's title and content instead of the post being edited.
