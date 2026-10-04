@@ -4,6 +4,58 @@
  */
 
 /**
+ * Ensure the extcf7_uploads directory exists and cannot execute PHP.
+ * Cheap to call on every request (file_exists guarded), so it is called
+ * both on plugin activation and lazily before every file write.
+ *
+ * @param string $dir Absolute path to the uploads directory.
+ * @return void
+ */
+if ( ! function_exists( 'extcf7_secure_uploads_dir' ) ) {
+    function extcf7_secure_uploads_dir( $dir ) {
+        if ( ! is_dir( $dir ) ) {
+            wp_mkdir_p( $dir );
+        }
+
+        $htaccess = $dir . '/.htaccess';
+        if ( ! file_exists( $htaccess ) ) {
+            $rules = "php_flag engine off\n"
+                . "<FilesMatch \"\\.(?i:ph(?:p[0-9]?|tml|ps|ar))$\">\n"
+                . "Require all denied\n"
+                . "</FilesMatch>\n";
+            @file_put_contents( $htaccess, $rules ); //phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+        }
+
+        $index = $dir . '/index.php';
+        if ( ! file_exists( $index ) ) {
+            @file_put_contents( $index, "<?php\n// Silence is golden.\n" ); //phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+        }
+    }
+}
+
+/**
+ * Validate an uploaded (temp) file's real extension/MIME type before it is
+ * copied anywhere, and hand back a safe extension to use for the stored copy.
+ * Never trust the client-supplied filename/extension.
+ *
+ * @param string     $tmp_path Absolute path to the temp file on disk.
+ * @param array|null $mimes    Allowed extension => mime map. Defaults to WP's core allow-list.
+ * @return string|false Validated lowercase extension, or false if the file is not allowed.
+ */
+if ( ! function_exists( 'extcf7_get_validated_upload_ext' ) ) {
+    function extcf7_get_validated_upload_ext( $tmp_path, $mimes = null ) {
+        if ( empty( $tmp_path ) || ! is_file( $tmp_path ) ) {
+            return false;
+        }
+        $checked = wp_check_filetype_and_ext( $tmp_path, basename( $tmp_path ), $mimes );
+        if ( empty( $checked['ext'] ) || empty( $checked['type'] ) ) {
+            return false;
+        }
+        return strtolower( $checked['ext'] );
+    }
+}
+
+/**
  * [extcf7_clean]
  * @param  [JSON] $var
  * @return [array]

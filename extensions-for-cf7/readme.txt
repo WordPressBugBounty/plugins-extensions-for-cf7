@@ -1,9 +1,9 @@
 === Extensions For CF7 (Contact form 7 Database, Conditional Fields and Redirection) ===
-Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony
+Contributors: htplugins, hasthemes, zenaulislam, aslamhasib, yeasinrony, madhusudandev
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 3.4.5
+Stable tag: 3.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,10 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.4.6 - Date: 04 Oct 2026 =
+* Security: Hardened file upload handling for the Signature field and form submission storage.
+* Tested: Compatibility with the latest version of WordPress.
 
 = Version: 3.4.5 - Date: 30 Aug 2026 =
 * Fixed: Recommended Plugins page grid collapsed to a single column on newer WordPress versions.

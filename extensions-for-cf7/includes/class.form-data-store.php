@@ -30,6 +30,9 @@ class Extensions_Cf7_Store_Data
             $cf7_files              = $submission->uploaded_files();
             $cf7_uploaded_files     = array();
             $posted_fields_value    = array();
+            $stored_file_names      = array();
+
+            extcf7_secure_uploads_dir( $cf7_file_dirname );
 
             foreach ($_FILES as $file_key => $file) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
                 array_push($cf7_uploaded_files, $file_key);
@@ -38,10 +41,22 @@ class Extensions_Cf7_Store_Data
             foreach ($cf7_files as $file_key => $file) {
                 $file = is_array( $file ) ? reset( $file ) : $file;
                 if( empty($file) ) continue;
-                $destination = $cf7_file_dirname . '/' . $current_time . '-' . $file_key . '-' . basename($file);
+
+                // Never trust the client-supplied filename/extension: sniff the real
+                // type and always write out under our own field-name-based filename.
+                $safe_ext = extcf7_get_validated_upload_ext( $file );
+                if ( false === $safe_ext ) {
+                    error_log( 'Extensions for CF7: Rejected uploaded file with disallowed type for field ' . $file_key );
+                    continue;
+                }
+
+                $safe_name   = $current_time . '-' . sanitize_file_name( $file_key ) . '.' . $safe_ext;
+                $destination = $cf7_file_dirname . '/' . $safe_name;
                 if ( ! @copy($file, $destination) ) {
                     error_log( 'Extensions for CF7: Failed to copy uploaded file to ' . $destination );
+                    continue;
                 }
+                $stored_file_names[ $file_key ] = $safe_name;
             }
 
             foreach ($cf7_data  as $key => $value){
@@ -51,9 +66,7 @@ class Extensions_Cf7_Store_Data
                 }
                 if ( in_array($key, $cf7_uploaded_files ) ){
                     $dataKey = esc_html($key);
-                    $file = is_array( $cf7_files[ $key ] ) ? reset( $cf7_files[ $key ] ) : $cf7_files[ $key ];
-                    $file_name = empty( $file ) ? '' : $current_time.'-'.$key.'-'.basename( $file ); 
-                    $posted_fields_value[$dataKey] = $file_name;
+                    $posted_fields_value[$dataKey] = isset( $stored_file_names[ $key ] ) ? $stored_file_names[ $key ] : '';
                 }
             }
 

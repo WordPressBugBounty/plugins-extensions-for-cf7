@@ -287,9 +287,10 @@ class Extensions_Cf7 {
     $this->Cf7_installer->run();
     $cf7_upload_dir    = wp_upload_dir();
     $cf7_dirname       = $cf7_upload_dir['basedir'].'/extcf7_uploads';
-    if ( ! file_exists( $cf7_dirname ) ) {
-      wp_mkdir_p( $cf7_dirname );
+    if ( ! function_exists( 'extcf7_secure_uploads_dir' ) ) {
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'includes/helper-functions.php' );
     }
+    extcf7_secure_uploads_dir( $cf7_dirname );
 
     if( is_plugin_active('extension-for-cf7-pro/cf7-extensions-pro.php') ){
       deactivate_plugins('extension-for-cf7-pro/cf7-extensions-pro.php');

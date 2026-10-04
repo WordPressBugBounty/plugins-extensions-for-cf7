@@ -30,8 +30,8 @@ class Extensions_Cf7_Signature{
         add_action('wpcf7_init', [$this, 'wpcf7_tags']);
         add_action('admin_init', [$this, 'wpcf7_tag_generator'], 589);
 
-        add_filter( 'wpcf7_validate_extcf7_signature', [$this, 'validation_filter'],10, 2);
-        add_filter( 'wpcf7_validate_extcf7_signature*', [$this, 'validation_filter'],10, 2);
+        add_filter( 'wpcf7_validate_extcf7_signature', [$this, 'validation_filter'],10, 3);
+        add_filter( 'wpcf7_validate_extcf7_signature*', [$this, 'validation_filter'],10, 3);
 	}
     public function enqueue_scripts() {
         wp_enqueue_script('extcf7_signature', CF7_EXTENTIONS_PL_URL.'assets/js/signature.min.js', ['jquery'], CF7_EXTENTIONS_PL_VERSION, true);
@@ -217,13 +217,47 @@ class Extensions_Cf7_Signature{
         <?php
     }
 
-    public function validation_filter($result, $tag){
+    public function validation_filter($result, $tag, $args = []){
         $name = $tag->name;
         $value = ( isset( $_FILES[ $name ] ) && !empty( $_FILES[ $name ]['name'] ) ) ? $_FILES[ $name ] : null ;  //phpcs:ignore WordPress.Security.NonceVerification.Missing
-        if( empty( $value ) && $tag->is_required() ) {
-            $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+        if( empty( $value ) ) {
+            if( $tag->is_required() ) {
+                $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+            }
             return $result;
         }
+
+        if ( ! empty( $value['error'] ) ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'upload_failed_php_error' ) );
+            return $result;
+        }
+
+        // This filter runs inside CF7 core's unship_uploaded_files(), i.e. AFTER
+        // move_uploaded_file() has already relocated the temp upload into CF7's own
+        // tmp dir — $_FILES[name]['tmp_name'] no longer exists at that point. Validate
+        // the file CF7 actually moved (passed via the 3rd filter arg), not the stale path.
+        $uploaded_files = isset( $args['uploaded_files'] ) ? (array) $args['uploaded_files'] : [];
+        $moved_file     = reset( $uploaded_files );
+
+        if ( empty( $moved_file ) || ! is_file( $moved_file ) ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'upload_failed' ) );
+            return $result;
+        }
+
+        // Signature pad always submits a PNG blob (see assets/js/signature-active.js).
+        // Enforce that strictly: no arbitrary extension/MIME, no oversized payloads.
+        $max_size = defined( 'MB_IN_BYTES' ) ? 2 * MB_IN_BYTES : 2 * 1024 * 1024;
+        if ( filesize( $moved_file ) > $max_size ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'upload_file_too_large' ) );
+            return $result;
+        }
+
+        $ext = extcf7_get_validated_upload_ext( $moved_file, [ 'png' => 'image/png' ] );
+        if ( 'png' !== $ext ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'upload_file_type_invalid' ) );
+            return $result;
+        }
+
         return $result;
     }
 }
